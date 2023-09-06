@@ -25,20 +25,23 @@ int main(){
         while (File.good()){
             getline(File, readInString);
 
+            //this for loop will make is so that all spaces and special characters are all one specific symbol to check for
             for (int i = 0; i < readInString.length(); i++){
                 if(int(readInString.at(i)) >= 32 && int(readInString.at(i)) <= 47){
                     readInString[i] = '_';
                 }
-
+                
+                //make all letters lowercase
                 if(int(readInString.at(i)) >= 65 && int(readInString.at(i)) <= 90){
                     readInString[i] = char(int(readInString.at(i) + 32));
                 }
             }
 
+
+            //add the now properly formatted line to the array
             magicIteam[magicIteamCount] = readInString;
             magicIteamCount++;
 
-            cout << readInString << endl;
             
         }
         //closed the file at the end when all done
