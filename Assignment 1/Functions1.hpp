@@ -85,6 +85,7 @@ bool isEmptyStack(Node*& head) {
 }
 
 struct Queue{
+    //Node pointer for the front and back
     Node* front;
     Node* back;
 
@@ -92,15 +93,56 @@ struct Queue{
         front = NULL;
         back =  NULL;
     }
+
+    //put the item of choice one after the last slot
+    void EnQueue(char info){
+        
+        //creates a temp Node pointer
+        Node* temp = new Node;
+
+        //sets the data to the temp nodes data
+        temp->data =  info;
+            //checks if back is null
+            if(back == NULL){
+                front = temp;
+                back = temp;
+                return;
+            }
+
+            //sets the back link to temp and then back to equal temp
+            back->link = temp;
+            back = temp;
+    }
+
+    char DeQueue(){
+        //checks if front is null or at the top
+        if (front == NULL) {
+            return '0';
+        }
+
+        //creates a temp node pointer
+        Node* temp = front;
+
+        //sets the front  variable to the link of front
+        front = front->link;
+
+        //set data of char type to the temp->datas data
+        char data =  temp->data;
+
+        //delets temp since not needed anymore
+        delete temp;
+
+        //makes it all null
+        if(front == NULL){
+            back = NULL;
+        }
+
+        //returns the data
+        return data;
+
+    }
 };
 
-void EnQueue(){
-
-}
-
-char DeQueue(){
-
-}
 
 //checks if the Queue is empty
 bool isEmptyQueue(Node*& head) {
