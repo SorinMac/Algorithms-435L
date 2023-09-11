@@ -53,5 +53,29 @@ int main(){
     //error checking if the file is not opened
     else cout << "Unable to open file"; 
 
+    //creates the Node start for the stack
+    Node* head;
+    head = new Node;
+
+    //creates the queue
+    Queue queue;
+
+    //goes through every word
+    for (int i = 0; i<666; i++){
+
+        //gets the word in the section of the array that is i
+        string PalanCheck = "";
+        PalanCheck = magicIteam[i];
+
+        //for the length of the word pushes to stack and enqueues the queue
+        for(int k = 0; k < PalanCheck.length(); k++){
+            push(&head, PalanCheck[k]);
+            queue.EnQueue(PalanCheck[k]);
+        }
+
+
+
+    }
+
 }
 
