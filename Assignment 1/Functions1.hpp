@@ -114,6 +114,12 @@ struct Queue{
             back = temp;
     }
 
+    /* Diagram: 
+        head -> link
+        tail -> link (new iteam)
+        iteam -> link (becomes new tail) ...
+    */
+
     char DeQueue(){
         //checks if front is null or at the top
         if (front == NULL) {
@@ -141,6 +147,19 @@ struct Queue{
         return data;
 
     }
+
+    /* Diagram: 
+        head -> link
+        tail -> link (new iteam)
+        iteam -> link (becomes new tail) ...
+
+        same thing as above but in reverse
+
+        head -> link (takes out this item)
+        item -> link (this becomes new head)
+        tail -> link 
+
+    */
 };
 
 
