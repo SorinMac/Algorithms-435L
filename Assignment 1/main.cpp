@@ -12,6 +12,7 @@ const int arraysize = 666;
 
 //main functions
 int main(){
+    int count = 0;
 
     int magicIteamCount = 0;
     string magicIteam[arraysize];
@@ -57,11 +58,11 @@ int main(){
     Node* head;
     head = new Node;
 
-    //creates the queue
-    Queue queue;
-
     //goes through every word
     for (int i = 0; i<666; i++){
+
+        //creates the queue
+        Queue queue;
 
         //gets the word in the section of the array that is i
         string PalanCheck = "";
@@ -71,6 +72,24 @@ int main(){
         for(int k = 0; k < PalanCheck.length(); k++){
             push(&head, PalanCheck[k]);
             queue.EnQueue(PalanCheck[k]);
+        }
+
+        for (int j = 0; j < PalanCheck.length(); j++){
+            char popChar =  pop(*&head);
+            char queueChar =  queue.DeQueue();
+
+            if (popChar != queueChar){
+                count = 0;
+                break;
+            } else if (popChar = queueChar){
+                count++;
+
+                if(count == PalanCheck.length()){
+                    cout << PalanCheck << "\n";
+                    count = 0;
+                }
+
+            }
         }
 
 

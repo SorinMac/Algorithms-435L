@@ -59,6 +59,8 @@ char pop(Node*& front) {
 
         take the data from front and returns that and then makes the head what ever is below it
     */
+
+   return '0';
 }
 
 
