@@ -5,6 +5,8 @@
 #include <algorithm>
 #include <cctype>
 #include "Functions1.hpp" //all the functions that will be used to make the node, stack, queue, and the sorting
+#include "shuffle.hpp" //shuffle functions 
+#include "Sort.hpp" // sorting algorithms
 
 using namespace std;
 
@@ -105,6 +107,9 @@ int main(){
         }
 
     }
+
+    string* selectionSortArrayPtr = selectionSort(magicIteam, arraysize);
+    
 
 }
 
