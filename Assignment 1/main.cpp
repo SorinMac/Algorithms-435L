@@ -108,7 +108,16 @@ int main(){
 
     }
 
-    string* selectionSortArrayPtr = selectionSort(magicIteam, arraysize);
+    //the now storted array for strings
+    selectionSort(magicIteam, arraysize);
+
+    shuffle(magicIteam);
+
+    /*for (int i = 0; i < 666; i++){
+        cout << magicIteam[i] << "\n";
+    }*/
+
+
     
 
 }

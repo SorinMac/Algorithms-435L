@@ -3,28 +3,40 @@
 using namespace std;
 
 //takes in a array uses selection sort to sort it
-string* selectionSort(string selectionSortsArray[666], int size){
+void selectionSort(string* selectionSortsArray, int size){
+
+    int numOfComp = 0;
+
+    //has the array size
     int arrayLength = size;
 
+    //goes through the array from start to the second to last one
+    //if there is one thing left than it is sorted
     for(int i = 0; i < arrayLength - 2; i++){
-        int smallestNum = i;
-        for(int k = i + 1; k < arrayLength - 1; k++){
-            if (selectionSortsArray[k] < selectionSortsArray[i]){
-                string temp = selectionSortsArray[i];
-                //cout << selectionSortsArray[i] << "\n";
-                //cout << selectionSortsArray[k] << "\n";
-                selectionSortsArray[i] = selectionSortsArray[k];
-                selectionSortsArray[i] = temp;
 
+        //starts by saying the smallest thing is what ever is in the i'th place
+        int smallestNum = i;
+
+        //will start making comparisons for everything after the i'th place
+        for(int k = i + 1; k < arrayLength; k++){
+
+            numOfComp++;
+
+            //if smaller givea k to the smallestNum to variable 
+            if (selectionSortsArray[k] < selectionSortsArray[smallestNum]){
+                smallestNum = k;
             }
+        }
+
+        if(smallestNum != i){
+            //performs the swap
+            string temp = selectionSortsArray[i];
+            selectionSortsArray[i] = selectionSortsArray[smallestNum];
+            selectionSortsArray[smallestNum] = temp;
         }
     }
 
-
-
-    return selectionSortsArray;
-
-    //seems to be doing to much switch and not actually trying to find the smallest one and then swap
+    cout << "\n" << "Selection Sort's number of comparisons is: " << numOfComp << "\n";
 
 };
 
