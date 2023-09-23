@@ -4,7 +4,7 @@
 #include <string> /* These three are used for the removing of a space for the strings */
 #include <algorithm>
 #include <cctype>
-#include "Functions1.hpp" //all the functions that will be used to make the node, stack, queue, and the sorting
+#include "Stack&Queue.hpp" //all the functions that will be used to make the node, stack, queue, and the sorting
 #include "shuffle.hpp" //shuffle functions 
 #include "Sort.hpp" // sorting algorithms
 
