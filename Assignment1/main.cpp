@@ -11,6 +11,7 @@
 using namespace std;
 
 const int arraysize = 666;
+int palanplacecheck = 1;
 
 //main functions
 int main(){
@@ -98,7 +99,8 @@ int main(){
 
                 //if the count equal the lenght of the string (did the whole string so print it out)
                 if(count == PalanCheck.length()){
-                    cout << PalanCheck << "\n";
+                    cout << "Palandrone " << palanplacecheck << " : " << PalanCheck << "\n";
+                    palanplacecheck++;
                     count = 0;
                 }
 
@@ -111,11 +113,16 @@ int main(){
     //the now storted array for strings
     selectionSort(magicIteam, arraysize);
 
+    //shuffles the same array again
     shuffle(magicIteam);
 
+    //does the insert sort
+    insertSort(magicIteam, arraysize);
+
+    //for testing purposes when i need to print everything out to see if its sorted or not
     /*for (int i = 0; i < 666; i++){
         cout << magicIteam[i] << "\n";
-    }*/
+    };*/
 
 
     
