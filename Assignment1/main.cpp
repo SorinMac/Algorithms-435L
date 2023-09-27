@@ -119,6 +119,11 @@ int main(){
     //does the insert sort
     insertSort(magicIteam, arraysize);
 
+    //shuffles the same array again
+    shuffle(magicIteam);
+
+    MergeSort(magicIteam, 0, arraysize - 1);
+
     //for testing purposes when i need to print everything out to see if its sorted or not
     /*for (int i = 0; i < 666; i++){
         cout << magicIteam[i] << "\n";

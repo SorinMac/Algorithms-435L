@@ -75,10 +75,47 @@ void insertSort(string* insertSortArray, int size){
 
 };
 
-//takes in a array uses merge sort to sort it
-void mergeSort(string mergeSortArray[]){
+//sudo code start have to have a middle, left and right -> merge does that all good (now to actual use it)
 
-};
+//does the mergeing back at the end
+void Merge(string* MergedArray, int left, int middle, int right){
+
+    int start = right + 1;
+    int i = 1;
+
+    string* tempArray = new string[right];
+
+    for(int k = 0; i < right-1; k++){
+        if (start > right){
+            tempArray[k] = MergedArray[i];
+            i++;
+        }else if (i > right){
+            tempArray[k] = MergedArray[right];
+            right++;
+        }else if (MergedArray[i] < MergedArray[right]){
+            tempArray[k] = MergedArray[i];
+            i++;
+        }else{
+            tempArray[k] = MergedArray[right];
+            right++;
+        }
+    }
+
+    for(int j = 0; j < right; j++){
+       MergedArray[j] = tempArray[j];
+    }
+}
+
+//takes in a array uses merge sort to sort it
+//this should be all good to give a accurate left right and mid if there is a even or a odd size value
+void MergeSort(string* mergeSortArray, int left, int right){
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+        MergeSort(mergeSortArray, left, mid);
+        MergeSort(mergeSortArray, mid + 1, right);
+        Merge(mergeSortArray, left, mid, right);
+    }
+}
 
 //takes in a array uses quick sort to sort it
 void quickSort(string quickSortArray[]){
