@@ -123,12 +123,15 @@ int main(){
     shuffle(magicIteam);
 
     //does the merge sort
-    MergeSort(magicIteam, 0, arraysize - 1);
+    int numOfComp = MergeSort(magicIteam, 0, arraysize - 1);
+
+    //prints out the number of comparisons
+    cout << "\n" << "Insert Sort's number of comparisons is: " << numOfComp << "\n";
 
     //for testing purposes when i need to print everything out to see if its sorted or not
-    for (int i = 0; i < 666; i++){
+    /*for (int i = 0; i < 666; i++){
         cout << magicIteam[i] << "\n";
-    };
+    };*/
 
 
     

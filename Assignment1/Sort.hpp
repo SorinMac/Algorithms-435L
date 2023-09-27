@@ -2,6 +2,8 @@
 
 using namespace std;
 
+int numOfComp = 0;
+
 //takes in a array uses selection sort to sort it
 void selectionSort(string* selectionSortsArray, int size){
 
@@ -75,10 +77,13 @@ void insertSort(string* insertSortArray, int size){
 
 };
 
-//sudo code start have to have a middle, left and right -> merge does that all good (now to actual use it)
+//fix num of comp
 
 //does the mergeing back at the end
 void Merge(string* MergedArray, int left, int middle, int right) {
+
+    //counts the number of comparisons
+    int numOfComp = 0;
 
     //determing the left and the right side from the mid point
     int leftToMid = middle - left + 1;
@@ -107,6 +112,8 @@ void Merge(string* MergedArray, int left, int middle, int right) {
 
     //goes for the whole time unitl the check stuff is bigger than the left to mid value and the right side is at the end or bigger than right to mid
     while(leftSide < leftToMid && rigthSide < rightToMid){
+
+        numOfComp++;
 
         //if the left is smaller than right swap
         if(tempLeftSide[leftSide] <= tempRightSide[rigthSide]){
@@ -150,8 +157,7 @@ void Merge(string* MergedArray, int left, int middle, int right) {
 
 //takes in a array uses merge sort to sort it
 //this should be all good to give a accurate left right and mid if there is a even or a odd size value
-void MergeSort(string* mergeSortArray, int left, int right){
-    
+int MergeSort(string* mergeSortArray, int left, int right){
     //uses recursion to set up a sort of queue that breaks down the total array to single values
     //then when the reusion is done it brings it all back to the the total array and sorts it along the way
     if(left < right){
@@ -165,6 +171,8 @@ void MergeSort(string* mergeSortArray, int left, int right){
         //when all done starts the merging back
         Merge(mergeSortArray, left, middle, right);
     }
+
+    return numOfComp;
 
 }
 
