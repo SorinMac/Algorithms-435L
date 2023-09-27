@@ -78,43 +78,94 @@ void insertSort(string* insertSortArray, int size){
 //sudo code start have to have a middle, left and right -> merge does that all good (now to actual use it)
 
 //does the mergeing back at the end
-void Merge(string* MergedArray, int left, int middle, int right){
+void Merge(string* MergedArray, int left, int middle, int right) {
 
-    int start = right + 1;
-    int i = 1;
+    //determing the left and the right side from the mid point
+    int leftToMid = middle - left + 1;
+    int rightToMid = right - middle;
 
-    string* tempArray = new string[right];
+    //temp arrays for the left and right side
+    string* tempLeftSide = new string[leftToMid];
+    string* tempRightSide = new string[rightToMid];
 
-    for(int k = 0; i < right-1; k++){
-        if (start > right){
-            tempArray[k] = MergedArray[i];
-            i++;
-        }else if (i > right){
-            tempArray[k] = MergedArray[right];
-            right++;
-        }else if (MergedArray[i] < MergedArray[right]){
-            tempArray[k] = MergedArray[i];
-            i++;
-        }else{
-            tempArray[k] = MergedArray[right];
-            right++;
+    //assign the temp array the values from the 0th to the leftToMid point
+    for(int i = 0; i < leftToMid; i++){
+        tempLeftSide[i] = MergedArray[left + i];
+    }
+
+    //assign the temp array to the values from the mid to the end
+    //why we have to add the k to the middle as well so that we move along to the end 
+    //middle is there also for the addition to make is so we start at the middle
+    for(int k = 0; k < rightToMid; k++){
+        tempRightSide[k] = MergedArray[middle + 1 + k];
+    }
+
+    //some defined variable to be used for keeping track of where we are
+    int leftSide = 0;
+    int rigthSide = 0;
+    int start = left;
+
+    //goes for the whole time unitl the check stuff is bigger than the left to mid value and the right side is at the end or bigger than right to mid
+    while(leftSide < leftToMid && rigthSide < rightToMid){
+
+        //if the left is smaller than right swap
+        if(tempLeftSide[leftSide] <= tempRightSide[rigthSide]){
+
+            //swap by making the actuall array switch with the value of the temp left side
+            MergedArray[start] = tempLeftSide[leftSide];
+            //then incroment to keep track
+            leftSide++;
+
+        //if the left is bigger than the right swap other way
+        } else if(tempLeftSide[leftSide] >= tempRightSide[rigthSide]){
+
+            //swap by making the actuall array switch with the value of the temp right side
+            MergedArray[start] = tempRightSide[rigthSide];
+            //the incroment to keep track
+            rigthSide++;
+
         }
+        start++;
     }
 
-    for(int j = 0; j < right; j++){
-       MergedArray[j] = tempArray[j];
+    //makes sure the rest is correctly copied left side
+    while(leftSide < leftToMid){
+        MergedArray[start] = tempLeftSide[leftSide];
+        leftSide++;
+        start++;
     }
+
+    //makes sure the rest is correctly copied right side
+    while(rigthSide < rightToMid){
+        MergedArray[start] = tempRightSide[rigthSide];
+        rigthSide++;
+        start++;
+    }
+    
+    //deletes the temp arrays that where made
+    delete[] tempLeftSide;
+    delete[] tempRightSide;
+
 }
 
 //takes in a array uses merge sort to sort it
 //this should be all good to give a accurate left right and mid if there is a even or a odd size value
 void MergeSort(string* mergeSortArray, int left, int right){
-    if (left < right) {
-        int mid = left + (right - left) / 2;
-        MergeSort(mergeSortArray, left, mid);
-        MergeSort(mergeSortArray, mid + 1, right);
-        Merge(mergeSortArray, left, mid, right);
+    
+    //uses recursion to set up a sort of queue that breaks down the total array to single values
+    //then when the reusion is done it brings it all back to the the total array and sorts it along the way
+    if(left < right){
+        //creates a accurate middle
+        int middle = left + (right - left) / 2;
+        
+        //sets up the recursion
+        MergeSort(mergeSortArray, left, middle);
+        MergeSort(mergeSortArray, middle + 1, right);
+
+        //when all done starts the merging back
+        Merge(mergeSortArray, left, middle, right);
     }
+
 }
 
 //takes in a array uses quick sort to sort it
