@@ -1,5 +1,5 @@
 myprogram:
-	gcc -o myprogram main.cpp Stack&Queue.hpp Sort.hpp shuffle.hpp
+	g++ -std=c++20 main.cpp Sort.hpp StackQueue.hpp shuffle.hpp
 
 clean:
 	rm myprogram
