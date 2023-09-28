@@ -92,7 +92,7 @@ int main(){
                 count = 0;
                 break;
 
-            } else if (popChar = queueChar){
+            } else if (popChar == queueChar){
 
                 //if the two do match adds to count
                 count++;
