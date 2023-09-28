@@ -83,7 +83,7 @@ void insertSort(string* insertSortArray, int size){
 void Merge(string* MergedArray, int left, int middle, int right) {
 
     //counts the number of comparisons
-    int numOfComp = 0;
+    numOfComp = 0;
 
     //determing the left and the right side from the mid point
     int leftToMid = middle - left + 1;
@@ -113,7 +113,6 @@ void Merge(string* MergedArray, int left, int middle, int right) {
     //goes for the whole time unitl the check stuff is bigger than the left to mid value and the right side is at the end or bigger than right to mid
     while(leftSide < leftToMid && rigthSide < rightToMid){
 
-        numOfComp++;
 
         //if the left is smaller than right swap
         if(tempLeftSide[leftSide] <= tempRightSide[rigthSide]){
@@ -133,6 +132,7 @@ void Merge(string* MergedArray, int left, int middle, int right) {
 
         }
         start++;
+        numOfComp++;
     }
 
     //makes sure the rest is correctly copied left side
@@ -152,6 +152,7 @@ void Merge(string* MergedArray, int left, int middle, int right) {
     //deletes the temp arrays that where made
     delete[] tempLeftSide;
     delete[] tempRightSide;
+
 
 }
 
