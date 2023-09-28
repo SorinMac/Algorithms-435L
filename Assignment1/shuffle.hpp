@@ -1,4 +1,5 @@
 #include <iostream> //object oriented library that allows input and output using streams
+#include <cstdlib>
 
 using namespace std;
 
@@ -7,6 +8,7 @@ void shuffle(string* shuffleArray){
     //gets a random number from 0 to 665 since array size is 666
     for (int i = 0; i < 666; i++){
         //does the swap of the two things
+        srand((unsigned) time(NULL));
         int randNum = rand() % 665 + 0;
         string temp = shuffleArray[i];
         shuffleArray[i] = shuffleArray[randNum];

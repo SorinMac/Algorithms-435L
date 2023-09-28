@@ -1,4 +1,6 @@
 #include <iostream> //object oriented library that allows input and output using streams
+#include <algorithm>
+#include <cstdlib>
 
 using namespace std;
 
@@ -177,7 +179,43 @@ int MergeSort(string* mergeSortArray, int left, int right){
 
 }
 
+int Break(string* pivotArray, int pivot){
+
+}
+
+
 //takes in a array uses quick sort to sort it
-void quickSort(string quickSortArray[]){
+void quickSort(string* quickSortArray, int size){
+    if(size > 1){
+
+        int pivot = 0;
+
+        srand((unsigned) time(NULL));
+
+        int randNum1 = rand() % 665 + 0;
+        int randNum2 = rand() % 665 + 0;
+        int randNum3 = rand() % 665 + 0;
+    
+
+        string randomString1 = quickSortArray[randNum1];
+        string randomString2 = quickSortArray[randNum2];
+        string randomString3 = quickSortArray[randNum3];
+
+        string middleArray[] = {randomString1, randomString2, randomString3};
+
+        sort(middleArray->begin() , middleArray->end());
+
+        for(int i = 0; i < size; i++){
+            if(middleArray[1] == quickSortArray[i]){
+                pivot = i;
+            }
+        }
+
+        int paritionPlace = Break(quickSortArray, pivot);
+
+        //pass a low and a high value cause you can not just get a sub array of a arary without it costing extra work
+        //implement some kinf of low and high value to set the area in which you want to check for the pivot value
+
+    }
 
 };
