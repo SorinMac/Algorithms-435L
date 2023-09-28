@@ -137,9 +137,9 @@ int main(){
 
 
     //for testing purposes when i need to print everything out to see if its sorted or not
-    /*for (int i = 0; i < 666; i++){
+    for (int i = 0; i < 666; i++){
         cout << magicIteam[i] << "\n";
-    };*/
+    };
 
 
     

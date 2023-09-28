@@ -5,6 +5,7 @@
 using namespace std;
 
 int numOfComp = 0;
+int paritionPlace = 0;
 
 //takes in a array uses selection sort to sort it
 void selectionSort(string* selectionSortsArray, int size){
@@ -179,7 +180,36 @@ int MergeSort(string* mergeSortArray, int left, int right){
 
 }
 
-int Break(string* pivotArray, int pivot){
+int Partition(string* pivotArray, int pivot, int size){
+    //i think this works have not been able to test but seem to work
+
+    //goes to the end of the sub array
+    swap(pivotArray[pivot], pivotArray[size]);
+    
+    //place variable to keep track of where you are
+    int place = 0;
+
+    for(int i = 0; i < size-1; i++){
+        
+        //will eventually be used to check the number of comparisons
+        numOfComp++;
+        
+        //checks if smaller
+        if (pivotArray[i] < pivotArray[pivot]){
+
+            //if so move over by one
+            place++;
+            //swap the things
+            swap(pivotArray[place], pivotArray[i]);
+
+        }
+    }
+
+    //swap back to the start
+    swap(pivotArray[size], pivotArray[place+1]);
+
+    //returne the place that we are at to continue going on
+    return place+1;
 
 }
 
@@ -188,33 +218,62 @@ int Break(string* pivotArray, int pivot){
 void quickSort(string* quickSortArray, int size){
     if(size > 1){
 
-        int pivot = 0;
+        //trying to implment the whole use the three casue only two worst cases picks so third has to be the best
 
+        /* 
+            Do this by use the sort method and pick three random places
+            once i find the three random places i go to see which string is in the middle and then pick that as my pivot value
+            i use that pivot value as a way to "break" aport the array into its samller parts
+            
+            *issue since pivot gets reset to 665 every time and the arrays are being broken down that does not work like that.
+             the nums are to be for the array being to small
+
+             how do i go about making something that can handle the array sizes
+        */
+
+       //explain to him the spaghetti code that you made and what approach you where trying to take
+
+       /*
+            I was trying to account for it getting bad start pivot by implementing what you brough up in class but i am haveing some trouble with
+            it.
+       */
+
+
+        //gives the partition place in order to go along with the ever smaller arrays
+        int pivot = paritionPlace;
+
+        //make the random truly random generates a new random seed evertime
         srand((unsigned) time(NULL));
+        
 
-        int randNum1 = rand() % 665 + 0;
-        int randNum2 = rand() % 665 + 0;
-        int randNum3 = rand() % 665 + 0;
+        //pickes the three random things based
+        int randNum1 = rand() % pivot + 0;
+        int randNum2 = rand() % pivot + 0;
+        int randNum3 = rand() % pivot + 0;
     
-
+        //find the string equivalent in the array 
         string randomString1 = quickSortArray[randNum1];
         string randomString2 = quickSortArray[randNum2];
         string randomString3 = quickSortArray[randNum3];
 
+        //makes them into a array for sorting
         string middleArray[] = {randomString1, randomString2, randomString3};
-
+        
+        //sorts it to easly find the middle
         sort(middleArray->begin() , middleArray->end());
 
+        //gets the number for the middle so that we have a index at which to start sorting at
         for(int i = 0; i < size; i++){
             if(middleArray[1] == quickSortArray[i]){
                 pivot = i;
             }
         }
 
-        int paritionPlace = Break(quickSortArray, pivot);
-
-        //pass a low and a high value cause you can not just get a sub array of a arary without it costing extra work
-        //implement some kinf of low and high value to set the area in which you want to check for the pivot value
+        //actiavates the recursion 
+        paritionPlace = Partition(quickSortArray, pivot, size);
+        //ever so smaller
+        quickSort(quickSortArray, pivot-1);
+        quickSort(quickSortArray, pivot+1); 
 
     }
 
