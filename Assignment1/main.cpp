@@ -110,13 +110,13 @@ int main(){
 
     }
 
-    //the now storted array for strings
+    //the now storted array for strings about 1\2 o(n^2)
     selectionSort(magicIteam, arraysize);
 
     //shuffles the same array again
     shuffle(magicIteam);
 
-    //does the insert sort
+    //does the insert sort about 1\4 o(n^2)
     insertSort(magicIteam, arraysize);
 
     //shuffles the same array again
@@ -125,9 +125,9 @@ int main(){
     //does the merge sort
     int numOfComp = MergeSort(magicIteam, 0, arraysize - 1);
 
+    //prints the num of comparison equal to about 1\9 of o(n log2(n));
     cout << "\n" << "Insert Sort's number of comparisons is: " << numOfComp << "\n";
 
-    //prints out the number of comparisons
 
     //for testing purposes when i need to print everything out to see if its sorted or not
     /*for (int i = 0; i < 666; i++){
