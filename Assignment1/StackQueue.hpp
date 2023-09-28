@@ -40,14 +40,14 @@ char pop(Node*& front) {
     if(front){
 
         //mks a temp variable
-        Node* TempPop =  front;
+        Node* temp =  front;
         //gets the data
         char data =  front->data;
         //make front = to next thing
         front = front->link;
 
         //delets all that not used and returns the data to be used
-        delete TempPop;
+        delete temp;
         return data;
     }
 
@@ -81,6 +81,8 @@ bool isEmptyStack(Node*& head) {
     } else{
         EmptyOrNot = false;
     }
+
+    delete temp;
 
     //returns bool answer
     return EmptyOrNot;
@@ -182,6 +184,8 @@ bool isEmptyQueue(Node*& head) {
     } else{
         EmptyOrNot = false;
     }
+
+    delete temp;
 
     //returns bool answer
     return EmptyOrNot;
