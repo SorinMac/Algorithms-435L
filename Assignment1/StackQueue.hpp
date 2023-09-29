@@ -116,6 +116,8 @@ struct Queue{
             //sets the back link to temp and then back to equal temp
             back->link = temp;
             back = temp;
+
+            delete temp;
     }
 
     /* Diagram: 
