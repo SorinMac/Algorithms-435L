@@ -123,18 +123,7 @@ int main(){
     shuffle(magicIteam);
 
     //does the merge sort
-    int numOfComp = MergeSort(magicIteam, 0, arraysize - 1);
-
-    //prints the num of comparison equal to about 1\9 of o(n log2(n));
-    cout << "\n" << "Merge Sort's number of comparisons is: " << numOfComp << "\n";
-
-    //shuffles the same array again
-    shuffle(magicIteam);
-
-    quickSort(magicIteam, arraysize);
-
-
-
+    MergeSort(magicIteam, 0, arraysize - 1);
 
     //for testing purposes when i need to print everything out to see if its sorted or not
     for (int i = 0; i < 666; i++){

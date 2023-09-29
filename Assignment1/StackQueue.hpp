@@ -47,7 +47,6 @@ char pop(Node*& front) {
         front = front->link;
 
         //delets all that not used and returns the data to be used
-        delete temp;
         return data;
     }
 
@@ -82,8 +81,6 @@ bool isEmptyStack(Node*& head) {
         EmptyOrNot = false;
     }
 
-    delete temp;
-
     //returns bool answer
     return EmptyOrNot;
 }
@@ -116,8 +113,6 @@ struct Queue{
             //sets the back link to temp and then back to equal temp
             back->link = temp;
             back = temp;
-
-            delete temp;
     }
 
     /* Diagram: 
@@ -186,8 +181,6 @@ bool isEmptyQueue(Node*& head) {
     } else{
         EmptyOrNot = false;
     }
-
-    delete temp;
 
     //returns bool answer
     return EmptyOrNot;
