@@ -78,9 +78,13 @@ void insertSort(string* insertSortArray, int size){
     //prints out the number of comparisons
     cout << "\n" << "Insert Sort's number of comparisons is: " << numOfComp << "\n";
 
+    numOfComp++;
+
 };
 
 //does the mergeing back at the end
+
+//not sure if it is swapping correctly or if its just randomly swappinf things to the right side's
 void Merge(string* MergedArray, int start, int end, int middle) {
 
     //creats a left side and a right side
@@ -93,26 +97,43 @@ void Merge(string* MergedArray, int start, int end, int middle) {
 
     //comparison to tell what is left and right
     for(int i = start; i < end; i++){
-        if(MergedArray[right] > MergedArray[end]){
+
+        numOfComp++;
+
+        //checks if the right is lesser than end
+        if(right < end){
+
+            //if so moves it to the left
             tempLeftSide[i] = MergedArray[left];
             left++;
-        } else if (MergedArray[left] > MergedArray[middle]){
+
+        //checks if the left is greater than middle
+        } else if (left > middle){
+
+            //moves it to the right
             tempRightSide[i] = MergedArray[right];
             right++;
+
+        //checks if the value of left is lesser than right
         } else if (MergedArray[left] < MergedArray[right]){
+
+            //moves it to the left side
             tempLeftSide[i] = MergedArray[left];
             left++;
+        
+        //else moves it to the right
         }else{
             tempRightSide[i] = MergedArray[right];
             right++;
         }
     }  
 
-    //sets the left and the right side
+    //sets the left side
     for (int k = left; k < middle; k++){
         MergedArray[k] = tempLeftSide[k];
     }
 
+    //sets the right side
     for (int l = middle+1; l < end; l++){
         MergedArray[l] = tempRightSide[l];
     }
@@ -129,10 +150,10 @@ int MergeSort(string* mergeSortArray, int start, int end){
 
     //uses recursion to set up a sort of queue that breaks down the total array to single values
     //then when the reusion is done it brings it all back to the the total array and sorts it along the way
-    if(start > end){
+    if(start >= end){
 
         //creates a accurate middle
-        int middle = end / 2;
+        int middle = (start + end) / 2;
         
         //sets up the recursion
         MergeSort(mergeSortArray, start, middle);
@@ -141,9 +162,6 @@ int MergeSort(string* mergeSortArray, int start, int end){
         //when all done starts the merging back
         Merge(mergeSortArray, start, end, middle);
     }
-
-    //return the numOfComp
-    return numOfComp;
 
 }
 
