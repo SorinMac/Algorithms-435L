@@ -96,7 +96,7 @@ void Merge(string* MergedArray, int start, int end, int middle) {
     string* tempRightSide = new string[right];
 
     //comparison to tell what is left and right
-    for(int i = start; i < end; i++){
+    for(int i = 0; i < end - start + 1; i++){
 
         numOfComp++;
 
@@ -129,12 +129,12 @@ void Merge(string* MergedArray, int start, int end, int middle) {
     }  
 
     //sets the left side
-    for (int k = left; k < middle; k++){
+    for (int k = 0; k < end - start + 1; k++){
         MergedArray[k] = tempLeftSide[k];
     }
 
     //sets the right side
-    for (int l = middle+1; l < end; l++){
+    for (int l = 0; l < end - start + 1; l++){
         MergedArray[l] = tempRightSide[l];
     }
 
@@ -161,7 +161,10 @@ int MergeSort(string* mergeSortArray, int start, int end){
 
         //when all done starts the merging back
         Merge(mergeSortArray, start, end, middle);
+
     }
+
+    return numOfComp;
 
 }
 
