@@ -125,10 +125,15 @@ int main(){
     //does the merge sort
     MergeSort(magicIteam, 0, arraysize - 1);
 
+    //prints out the number of comparisons
+    cout << "\n" << "Merge Sort's number of comparisons is: " << numOfComp << "\n";
+
+    shuffle(magicIteam);
+
     //for testing purposes when i need to print everything out to see if its sorted or not
-    for (int i = 0; i < 666; i++){
+    /*for (int i = 0; i < 666; i++){
         cout << magicIteam[i] << "\n";
-    };
+    };*/
 
 
     

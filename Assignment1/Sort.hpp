@@ -88,72 +88,82 @@ void insertSort(string* insertSortArray, int size){
 void Merge(string* MergedArray, int start, int end, int middle) {
 
     //creats a left side and a right side
-    int left = start;
-    int right = middle+1;
+    int leftSize = middle - start + 1;
+    int rightSize = end - middle;
 
     //temp string arrays to handle the storing of the left and the right value
-    string* tempLeftSide = new string[left];
-    string* tempRightSide = new string[right];
+    string* tempLeftSide = new string[leftSize];
+    string* tempRightSide = new string[rightSize];
+
+    //copy the data to temp arrays to manipulate for sorting (left)
+    for(int i = 0; i < leftSize; i++){
+        tempLeftSide[i] = MergedArray[start + i];
+    }
+
+    //copy the data to temp arrays to manipulate for sorting (right)
+    for(int k = 0; k < rightSize; k++){
+        tempRightSide[k] = MergedArray[middle + 1 + k];
+    }
+
+    //place holder variables to tell where you are at
+    int left = 0;
+    int right = 0;
+    int mergePlace = start;
 
     //comparison to tell what is left and right
-    for(int i = 0; i < end - start + 1; i++){
+    //does it for time of place value < thand the actual size
+
+    /*
+        Ask him if this is okay got it semy working with the seudo code version but keep on getting a segementation fault
+        that i did not know how to solve. So i made it a while to more accuratly check what is actualy being compared to.
+    */
+   
+    while(left < leftSize && right < rightSize){
 
         numOfComp++;
 
-        //checks if the right is lesser than end
-        if(right < end){
-
-            //if so moves it to the left
-            tempLeftSide[i] = MergedArray[left];
+        //if the left is lessthan or equal to the right but is on the left side
+        if(tempLeftSide[left] <= tempRightSide[right]){
+            MergedArray[mergePlace] = tempLeftSide[left];
             left++;
-
-        //checks if the left is greater than middle
-        } else if (left > middle){
-
-            //moves it to the right
-            tempRightSide[i] = MergedArray[right];
+        //else has to go on the right side
+        } else{
+            MergedArray[mergePlace] = tempRightSide[right];
             right++;
-
-        //checks if the value of left is lesser than right
-        } else if (MergedArray[left] < MergedArray[right]){
-
-            //moves it to the left side
-            tempLeftSide[i] = MergedArray[left];
-            left++;
-        
-        //else moves it to the right
-        }else{
-            tempRightSide[i] = MergedArray[right];
-            right++;
-        }
-    }  
-
-    //sets the left side
-    for (int k = 0; k < end - start + 1; k++){
-        MergedArray[k] = tempLeftSide[k];
+        }  
+        //advance foward on the place you are checking
+        mergePlace++;
     }
 
-    //sets the right side
-    for (int l = 0; l < end - start + 1; l++){
-        MergedArray[l] = tempRightSide[l];
+    //copy the rest of the left values over
+    while(left < leftSize){
+        MergedArray[mergePlace] = tempLeftSide[left];
+        left++;
+        mergePlace++;
+    }
+
+    //copy the rest of the right values over
+    while(right < rightSize){
+        MergedArray[mergePlace] = tempRightSide[right];
+        right++;
+        mergePlace++;
     }
 
     //deletes the temp values
     delete[] tempLeftSide;
     delete[] tempRightSide;
-
-
 }
+
 
 //takes in a array uses merge sort to sort it
 int MergeSort(string* mergeSortArray, int start, int end){
 
     //uses recursion to set up a sort of queue that breaks down the total array to single values
     //then when the reusion is done it brings it all back to the the total array and sorts it along the way
-    if(start >= end){
+    if(start < end){
 
         //creates a accurate middle
-        int middle = (start + end) / 2;
+        int middle = start + (end - start) / 2;
         
         //sets up the recursion
         MergeSort(mergeSortArray, start, middle);
