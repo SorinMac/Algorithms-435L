@@ -128,9 +128,14 @@ int main(){
     //prints out the number of comparisons
     cout << "\n" << "Merge Sort's number of comparisons is: " << numOfComp << "\n";
 
+    //shuffles the same array again
     shuffle(magicIteam);
 
+     //does the quick sort
     QuickSort(magicIteam, 0, arraysize - 1);
+
+    //prints out the number of comparisons
+    cout << "\n" << "Quick Sort's number of comparisons is: " << numOfCompQuick << "\n";
 
     //for testing purposes when i need to print everything out to see if its sorted or not
     for (int i = 0; i < 666; i++){

@@ -183,20 +183,33 @@ int MergeSort(string* mergeSortArray, int start, int end){
 
 int Partition(string* pivotArray, int start, int end){
 
+    //something is wrong with this does not make the fully correct switches
+
+    //create the pivot value at what is at the middle of the parted array
     string pivotValue = pivotArray[start + (end - start) / 2];
+
+    //to keep track of what place you are at
     int place = start;
 
+    //goes from the start of the sub array to the end
     for(int i  = start; i < end; i++){
 
+        //gives the num of comparisons
         numOfCompQuick++;
 
-        if(pivotArray[i].compare(pivotArray[end]) < 0){
+        //checks to see if the ith value is less than the end
+        if(pivotArray[i] < pivotValue){
+
+            //if so swap and make place move over
             swap(pivotArray[place], pivotArray[i]);
             place++;
         }
+
+        //swap the place with the end to make sure all is well
         swap(pivotArray[place], pivotArray[end]);
     }
 
+    //return the place you are at to become the new end for the rest
     return place;
 
 }
@@ -205,9 +218,10 @@ int Partition(string* pivotArray, int start, int end){
 //takes in a array uses quick sort to sort it
 int QuickSort(string* quickSortArray, int start, int end){
 
+    //creates the condition to make it start calling
     if(start < end){
 
-        //creates a accurate middle
+        //creates a accurate pivotPoint (middle)
         int pivotPoint = Partition(quickSortArray, start, end);
         
         //sets up the recursion
@@ -216,6 +230,7 @@ int QuickSort(string* quickSortArray, int start, int end){
 
     }
 
+    //for comparisons
     return numOfCompQuick;
         
 }
