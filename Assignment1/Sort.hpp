@@ -6,6 +6,7 @@ using namespace std;
 
 int numOfComp = 0;
 int paritionPlace = 0;
+int numOfCompQuick = 0;
 
 //takes in a array uses selection sort to sort it
 void selectionSort(string* selectionSortsArray, int size){
@@ -140,6 +141,7 @@ void Merge(string* MergedArray, int start, int end, int middle) {
         MergedArray[mergePlace] = tempLeftSide[left];
         left++;
         mergePlace++;
+        numOfComp++;
     }
 
     //copy the rest of the right values over
@@ -147,6 +149,7 @@ void Merge(string* MergedArray, int start, int end, int middle) {
         MergedArray[mergePlace] = tempRightSide[right];
         right++;
         mergePlace++;
+        numOfComp++;
     }
 
     //deletes the temp values
@@ -178,13 +181,41 @@ int MergeSort(string* mergeSortArray, int start, int end){
 
 }
 
-int Partition(string* pivotArray, int left, int right){
-   
+int Partition(string* pivotArray, int start, int end){
+
+    string pivotValue = pivotArray[start + (end - start) / 2];
+    int place = start;
+
+    for(int i  = start; i < end; i++){
+
+        numOfCompQuick++;
+
+        if(pivotArray[i].compare(pivotArray[end]) < 0){
+            swap(pivotArray[place], pivotArray[i]);
+            place++;
+        }
+        swap(pivotArray[place], pivotArray[end]);
+    }
+
+    return place;
 
 }
 
 
 //takes in a array uses quick sort to sort it
-void quickSort(string* quickSortArray){
+int QuickSort(string* quickSortArray, int start, int end){
+
+    if(start < end){
+
+        //creates a accurate middle
+        int pivotPoint = Partition(quickSortArray, start, end);
         
-};
+        //sets up the recursion
+        QuickSort(quickSortArray, start, pivotPoint-1);
+        QuickSort(quickSortArray, pivotPoint+1, end);
+
+    }
+
+    return numOfCompQuick;
+        
+}
