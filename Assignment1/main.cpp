@@ -15,6 +15,9 @@ int palanplacecheck = 1;
 
 //main functions
 int main(){
+    
+    cout << "\n";
+
     int count = 0;
 
     int magicIteamCount = 0;
@@ -137,10 +140,7 @@ int main(){
     //prints out the number of comparisons
     cout << "\n" << "Quick Sort's number of comparisons is: " << numOfCompQuick << "\n";
 
-    //for testing purposes when i need to print everything out to see if its sorted or not
-    for (int i = 0; i < 666; i++){
-        cout << magicIteam[i] << "\n";
-    };
+    cout << "\n";
 
 
     

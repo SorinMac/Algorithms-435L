@@ -182,11 +182,8 @@ int MergeSort(string* mergeSortArray, int start, int end){
 }
 
 int Partition(string* pivotArray, int start, int end){
-
-    //something is wrong with this does not make the fully correct switches
-
     //create the pivot value at what is at the middle of the parted array
-    string pivotValue = pivotArray[start + (end - start) / 2];
+    string pivotValue = pivotArray[end];
 
     //to keep track of what place you are at
     int place = start;
@@ -204,10 +201,10 @@ int Partition(string* pivotArray, int start, int end){
             swap(pivotArray[place], pivotArray[i]);
             place++;
         }
-
-        //swap the place with the end to make sure all is well
-        swap(pivotArray[place], pivotArray[end]);
     }
+
+    //swap the place with the end to make sure all is well
+    swap(pivotArray[place], pivotArray[end]);
 
     //return the place you are at to become the new end for the rest
     return place;
