@@ -113,12 +113,6 @@ void Merge(string* MergedArray, int start, int end, int middle) {
 
     //comparison to tell what is left and right
     //does it for time of place value < thand the actual size
-
-    /*
-        Ask him if this is okay got it semy working with the seudo code version but keep on getting a segementation fault
-        that i did not know how to solve. So i made it a while to more accuratly check what is actualy being compared to.
-    */
-   
     while(left < leftSize && right < rightSize){
 
         numOfComp++;
