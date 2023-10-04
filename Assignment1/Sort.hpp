@@ -1,6 +1,4 @@
 #include <iostream> //object oriented library that allows input and output using streams
-#include <algorithm>
-#include <cstdlib>
 
 using namespace std;
 

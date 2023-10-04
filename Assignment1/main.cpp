@@ -2,8 +2,8 @@
 #include <iostream> //object oriented library that allows input and output using streams
 #include <fstream> //allows for the reading of a file in the library
 #include <string> /* These three are used for the removing of a space for the strings */
-#include <algorithm>
-#include <cctype>
+#include <algorithm> /* These three are used for the removing of a space for the strings */
+#include <cctype> /* These three are used for the removing of a space for the strings */
 #include "StackQueue.hpp" //all the functions that will be used to make the node, stack, queue, and the sorting
 #include "shuffle.hpp" //shuffle functions 
 #include "Sort.hpp" // sorting algorithms
