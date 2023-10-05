@@ -83,7 +83,6 @@ void insertSort(string* insertSortArray, int size){
 
 //does the mergeing back at the end
 
-//not sure if it is swapping correctly or if its just randomly swappinf things to the right side's
 void Merge(string* MergedArray, int start, int end, int middle) {
 
     //creats a left side and a right side
