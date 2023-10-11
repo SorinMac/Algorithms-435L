@@ -6,6 +6,7 @@
 #include <cctype> /* These three are used for the removing of a space for the strings */
 #include "singleSort.hpp"
 #include "Search.hpp"
+#include "hash.hpp"
 
 using namespace std;
 
@@ -50,16 +51,22 @@ int main(){
     //error checking if the file is not opened
     else cout << "Unable to open file"; 
 
+    //perfroms the sorting 
     QuickSort(magicIteam, 0, arraysize - 1);
 
+    //finds the 42 iteams at random to go find
     for(int i = 0; i < 42; i++){
         int randNum = rand() % 665 + 0;
         valuesArray[i] = magicIteam[randNum];
     }
 
+    //does a linear search
     linearSearch(magicIteam, valuesArray, arraysize);
 
+    //does a binary search
     binarySearch(magicIteam, valuesArray, arraysize);
+
+    HashTable(magicIteam);
 
     
 
