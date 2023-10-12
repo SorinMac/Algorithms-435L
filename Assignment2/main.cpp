@@ -66,6 +66,7 @@ int main(){
     //does a binary search
     binarySearch(magicIteam, valuesArray, arraysize);
 
+    //creates the hash table
     HashTable(magicIteam);
 
     
