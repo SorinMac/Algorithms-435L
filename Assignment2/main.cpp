@@ -4,6 +4,7 @@
 #include <string> /* These three are used for the removing of a space for the strings */
 #include <algorithm> /* These three are used for the removing of a space for the strings */
 #include <cctype> /* These three are used for the removing of a space for the strings */
+#include <iomanip>
 #include "singleSort.hpp"
 #include "Search.hpp"
 #include "hash.hpp"
@@ -61,16 +62,21 @@ int main(){
     }
 
     //does a linear search
-    int total = linearSearch(magicIteam, valuesArray, arraysize);
-    int avg = total/42;
-
-    cout << "Average number of Comparisons in linear search is: " << avg << "\n";
+    double totalLinear = linearSearch(magicIteam, valuesArray, arraysize);
+    double avgL = totalLinear/42;
+    std::cout << std::fixed << std::setprecision(2);
+    cout << "Average number of Comparisons in linear search is: " << avgL << "\n";
 
     //does a binary search
-    binarySearch(magicIteam, valuesArray, arraysize);
+    double totalBianry = binarySearch(magicIteam, valuesArray, arraysize);
+    double avgB = totalBianry/42;
+    std::cout << std::fixed << std::setprecision(2);
+    cout << "Average number of Comparisons in binary search is: " << avgB << "\n";
 
     //creates the hash table
     HashTable(magicIteam);
+
+
 
     
 

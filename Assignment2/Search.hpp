@@ -32,13 +32,14 @@ int linearSearch(string* magicIteams, string* values, int size){
     return linearSearchTotal;
 }
 
-void binarySearch(string* magicIteams, string* values, int size){
+int binarySearch(string* magicIteams, string* values, int size){
     //low and high to split
     int low = 0;
     int high = 666;
     //smae values for comparisons and the key
     int comparisons = 0;
     string key = " ";
+    int binarySearchTotal = 0;
 
     //for loop of the 42 items in the key array
     for(int i = 0; i < 42; i++){
@@ -57,6 +58,7 @@ void binarySearch(string* magicIteams, string* values, int size){
             //if its found will print out the number of comparisons
             if (key == magicIteams[mid]){
                 cout << "Number of Comparisons in binary search for the " << i+1 << " word is: " << comparisons << "\n";
+                binarySearchTotal = binarySearchTotal + comparisons;
                 break;
             }else if(key < magicIteams[mid]){
                 //if not high equal mid making the new high the mid (if less)
@@ -70,4 +72,6 @@ void binarySearch(string* magicIteams, string* values, int size){
         }
         
     }
+
+    return binarySearchTotal;
 }
