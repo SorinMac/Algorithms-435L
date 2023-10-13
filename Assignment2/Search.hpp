@@ -2,9 +2,11 @@
 
 using namespace std;
 
-void linearSearch(string* magicIteams, string* values, int size){
+
+int linearSearch(string* magicIteams, string* values, int size){
     //used to check
     string key = " ";
+    int linearSearchTotal = 0;
 
     //counts the number of comparisons
     int comparisons = 0;
@@ -20,11 +22,14 @@ void linearSearch(string* magicIteams, string* values, int size){
             if(key == magicIteams[k]){
                 //when key is found prints out the number of comparisons 
                 cout << "Number of Comparisons in linear search for the " << i+1 << " word is: " << comparisons << "\n";
+                linearSearchTotal = linearSearchTotal + comparisons;
             }else{
                 comparisons++;
             }
         }
     }
+
+    return linearSearchTotal;
 }
 
 void binarySearch(string* magicIteams, string* values, int size){

@@ -61,7 +61,10 @@ int main(){
     }
 
     //does a linear search
-    linearSearch(magicIteam, valuesArray, arraysize);
+    int total = linearSearch(magicIteam, valuesArray, arraysize);
+    int avg = total/42;
+
+    cout << "Average number of Comparisons in linear search is: " << avg << "\n";
 
     //does a binary search
     binarySearch(magicIteam, valuesArray, arraysize);
