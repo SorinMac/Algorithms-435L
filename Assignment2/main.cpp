@@ -4,7 +4,7 @@
 #include <string> /* These three are used for the removing of a space for the strings */
 #include <algorithm> /* These three are used for the removing of a space for the strings */
 #include <cctype> /* These three are used for the removing of a space for the strings */
-#include <iomanip>
+#include <iomanip> //used to set the amount of accuracy for the decmial points
 #include "singleSort.hpp"
 #include "Search.hpp"
 #include "hash.hpp"
@@ -61,16 +61,22 @@ int main(){
         valuesArray[i] = magicIteam[randNum];
     }
 
-    //does a linear search
+    //does a linear search and take the total amount of comparisons and assigns it to total
     double totalLinear = linearSearch(magicIteam, valuesArray, arraysize);
+    //then creates the average
     double avgL = totalLinear/42;
+    //used to set the accuracy of the decimal point
     std::cout << std::fixed << std::setprecision(2);
+    //prints out message of the average
     cout << "Average number of Comparisons in linear search is: " << avgL << "\n";
 
-    //does a binary search
+    //does a binary search and take the total amount of comparisons and assigns it to total
     double totalBianry = binarySearch(magicIteam, valuesArray, arraysize);
+    //then creates the average
     double avgB = totalBianry/42;
+    //used to set the accuracy of the decimal point
     std::cout << std::fixed << std::setprecision(2);
+    //prints out message of the average
     cout << "Average number of Comparisons in binary search is: " << avgB << "\n";
 
     //creates the hash table

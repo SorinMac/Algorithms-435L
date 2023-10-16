@@ -6,6 +6,7 @@ using namespace std;
 int linearSearch(string* magicIteams, string* values, int size){
     //used to check
     string key = " ";
+    //use to find the total value
     int linearSearchTotal = 0;
 
     //counts the number of comparisons
@@ -22,6 +23,7 @@ int linearSearch(string* magicIteams, string* values, int size){
             if(key == magicIteams[k]){
                 //when key is found prints out the number of comparisons 
                 cout << "Number of Comparisons in linear search for the " << i+1 << " word is: " << comparisons << "\n";
+                //add the value together plus the amount of comaprisons to get the total
                 linearSearchTotal = linearSearchTotal + comparisons;
             }else{
                 comparisons++;
@@ -29,6 +31,7 @@ int linearSearch(string* magicIteams, string* values, int size){
         }
     }
 
+    //returns the total to be used to find the average in main.cpp
     return linearSearchTotal;
 }
 
@@ -39,6 +42,7 @@ int binarySearch(string* magicIteams, string* values, int size){
     //smae values for comparisons and the key
     int comparisons = 0;
     string key = " ";
+    //to find the total number of comparisons
     int binarySearchTotal = 0;
 
     //for loop of the 42 items in the key array
@@ -58,7 +62,9 @@ int binarySearch(string* magicIteams, string* values, int size){
             //if its found will print out the number of comparisons
             if (key == magicIteams[mid]){
                 cout << "Number of Comparisons in binary search for the " << i+1 << " word is: " << comparisons << "\n";
+                //add the value to itself to get the total
                 binarySearchTotal = binarySearchTotal + comparisons;
+                //once foudn breaks out the loop to not cause extra stuff to be done
                 break;
             }else if(key < magicIteams[mid]){
                 //if not high equal mid making the new high the mid (if less)
@@ -73,5 +79,6 @@ int binarySearch(string* magicIteams, string* values, int size){
         
     }
 
+    //returns the total to be use to find the average in main.cpp
     return binarySearchTotal;
 }
