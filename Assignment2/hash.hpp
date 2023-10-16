@@ -41,10 +41,11 @@ int HashValue(string word){
 
 }
 
-void HashTable(string* HashingArray){
+int HashTable(string* HashingArray, string* values){
 
-    //creats the array of 250 things as the node data type and sets all things to nullptr
+    //creates the hash map
     Node* HashMap[250] = { nullptr };
+    int hashTotal = 0;
 
     for(int k = 0; k < 666; k++){
         //finds the hash value and assign it to place
@@ -71,6 +72,45 @@ void HashTable(string* HashingArray){
 
     }
 
+
+    //goes through the the 42 different values and finds them 
+    for(int k = 0; k < 42; k++){
+        //to get the num of comparisons
+        int comparisons = 0;
+        //what the hash function will get it too and then that will equal the place it is on the array
+        int valuePlace = HashValue(values[k]);
+        //the key we are looking for
+        string key = values[k];
+
+        //will create a temp node so that we can travers the linked lists inside fo the hashmap
+        Node* temp = new Node;
+        temp->link = HashMap[valuePlace]->link;
+        temp->data = HashMap[valuePlace]->data;
+
+
+        //does this while the linked list does not equal 0x0 or the end
+        while(temp != 0x0){ 
+            //if it finds the end then prints out the message and adds to the total to be used later and breaks out the loop
+            if(temp->data == key){
+                cout << "Number of Comparisons in Hash search for the " << k+1 << " word is: " << comparisons << "\n";
+                hashTotal = hashTotal + comparisons;
+                break;
+            }else{
+                //if not add to comparison and then move along the linked list
+                comparisons++;
+                temp =  temp->link;
+            }
+        }
+
+        //delets the temp value once done
+        delete temp;
+        
+    }
     
+    //return the total to be used to find the average
+    return hashTotal;
+
+    
+
 
 }
