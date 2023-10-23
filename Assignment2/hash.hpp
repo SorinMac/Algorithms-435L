@@ -41,7 +41,7 @@ int HashValue(string word){
 
 }
 
-int HashTable(string* HashingArray, string* values){
+int HashMap(string* HashingArray, string* values){
 
     //creates the hash map
     Node* HashMap[250] = { nullptr };
