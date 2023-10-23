@@ -80,7 +80,7 @@ int main(){
     cout << "Average number of Comparisons in binary search is: " << avgB << "\n";
 
     //creates the hash table
-    double hashTotal = HashTable(magicIteam, valuesArray);
+    double hashTotal = HashMap(magicIteam, valuesArray);
     //then creates the average
     double avgH = hashTotal/42;
     //used to set the accuracy of the decimal point
