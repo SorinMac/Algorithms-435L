@@ -92,6 +92,7 @@ int HashMap(string* HashingArray, string* values){
         while(temp != 0x0){ 
             //if it finds the end then prints out the message and adds to the total to be used later and breaks out the loop
             if(temp->data == key){
+                comparisons++;
                 cout << "Number of Comparisons in Hash search for the " << k+1 << " word is: " << comparisons << "\n";
                 hashTotal = hashTotal + comparisons;
                 break;
