@@ -41,13 +41,14 @@ string BSTTreeInsert(BST*& root, string value){
         }
     }
 
+    delete node;
     return path;
 
 }
 
 BST* BSTSearch(BST*& node, string key){
-    if(node->left == nullptr || node->left == nullptr || node->data == key){
-        cout << "done searching." << "\n";
+    if(node->left == nullptr && node->right == nullptr || node->data == key){
+        cout << ":-" << node->data << " is done searching." << "\n";
         return node;
     }else if(key < node->data){
         cout << "L";

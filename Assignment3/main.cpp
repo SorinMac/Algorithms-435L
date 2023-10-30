@@ -97,7 +97,6 @@ int main(){
 
     for(int i = 0; i < BSTcount; i++){
         temp = BSTSearch(root, BSTitem[i]);
-        cout << temp->data;
     }
 
 }
