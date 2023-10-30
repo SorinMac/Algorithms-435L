@@ -50,21 +50,24 @@ int main(){
     //error checking if the file is not opened
     else cout << "Unable to open file"; 
 
+    //used to creat the root of the tree
     BST* root;
     root = new BST;
 
-    BST* temp;
-    temp = new BST;
-
+    //goes through the whole array of magic items to see where they will be inserted into the binary tree
     for(int i = 0; i < arraysize; i++){
+        //this string will output the path taken to where the magicitem was placed
+        //it gets passed the tree's root to start and the item it is adding
         string insertPath = BSTTreeInsert(root , magicIteam[i]);
         cout << "This is the path of " + magicIteam[i] + " is " + insertPath + "." << "\n";
     }
 
+    //to split the two sections up
     cout << "\n";
 
     count = 0;
 
+    //makes a new array to be written too for the stuff that will looked for in the BinaryTree
     int BSTcount = 0;
     string BSTitem[BSTsize];
 
@@ -95,8 +98,9 @@ int main(){
     //error checking if the file is not opened
     else cout << "Unable to open file"; 
 
+    //call the BSTSearch function to search for the 42 items that where inputed from the magicitems-find-in-bst.txt file
     for(int i = 0; i < BSTcount; i++){
-        temp = BSTSearch(root, BSTitem[i]);
+        BSTSearch(root, BSTitem[i]);
     }
 
 }
