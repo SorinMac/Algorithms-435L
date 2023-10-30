@@ -10,6 +10,7 @@
 using namespace std;
 
 const int arraysize = 666;
+const int BSTsize = 42;
 int palanplacecheck = 1;
 
 //main functions
@@ -52,11 +53,52 @@ int main(){
     BST* root;
     root = new BST;
 
+    BST* temp;
+    temp = new BST;
+
     for(int i = 0; i < arraysize; i++){
         string insertPath = BSTTreeInsert(root , magicIteam[i]);
-        cout << "This is the path of " + magicIteam[i] + " " + insertPath + "." << "\n";
+        cout << "This is the path of " + magicIteam[i] + " is " + insertPath + "." << "\n";
     }
 
+    cout << "\n";
+
+    count = 0;
+
+    int BSTcount = 0;
+    string BSTitem[BSTsize];
+
+    //start of the file stream studd
+    readInString;
+
+    //opens the right file
+    ifstream BST ("magicitems-find-in-bst.txt");
+
+    //checks if the file is open
+    if (BST.is_open()){
+
+        //while file is open gets the line
+        while (BST.good()){
+
+            getline(BST, readInString);
+
+            //add the now properly formatted line to the array
+            BSTitem[BSTcount] = readInString;
+            BSTcount++;
+
+            
+        }
+        //closed the file at the end when all done
+        BST.close();
+    }
+
+    //error checking if the file is not opened
+    else cout << "Unable to open file"; 
+
+    for(int i = 0; i < BSTcount; i++){
+        temp = BSTSearch(root, BSTitem[i]);
+        cout << temp->data;
+    }
 
 }
 
