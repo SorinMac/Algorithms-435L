@@ -5,7 +5,15 @@
 #include <algorithm> /* These three are used for the removing of a space for the strings */
 #include <cctype> /* These three are used for the removing of a space for the strings */
 #include <iomanip> //used to set the amount of accuracy for the decmial points
+#include <string>
+#include <vector>
+#include <sstream>
 #include "BST.hpp"
+#include "Matrix.hpp"
+#include "AdjacencyList.hpp"
+#include "LinkedObjects.hpp"
+#include "BFS.hpp"
+#include "DFS.hpp"
 
 using namespace std;
 
@@ -103,5 +111,71 @@ int main(){
         BSTSearch(root, BSTitem[i]);
     }
 
+    //start of the graph
+
+    //makes a new array to be written too for the stuff that will looked for in the BinaryTree
+    vector<string> GraphVector;
+
+    //start of the file stream studd
+    readInString;
+
+    //opens the right file
+    ifstream Graph ("graphs1.txt");
+
+    //checks if the file is open
+    if (Graph.is_open()){
+
+        //while file is open gets the line
+        while (Graph.good()){
+
+            getline(Graph, readInString);
+
+            //add the now properly formatted line to the array
+            GraphVector.push_back(readInString);
+
+            
+        }
+        //closed the file at the end when all done
+        Graph.close();
+    }
+
+    //error checking if the file is not opened
+    else cout << "Unable to open file"; 
+
+    int vertexs = 0;
+    string start = "0";
+    string end = "0";
+    vector<vector<int>> startEnd; 
+
+    for(string i : GraphVector){
+        if(i.find("--") == std::string::npos){
+            if(i.find("new") != std::string::npos){
+                if(startEnd.empty() == false){
+                    MatrixGraph(vertexs, startEnd);
+                    startEnd.clear();
+                }
+            }else if(i.find("vertex") != std::string::npos){
+                vertexs++;
+            }else if(i.find("edge") != std::string::npos){
+
+                std::istringstream iss(i);
+
+                std::string token;
+                while (iss >> token) {
+                    if (token == "add" || token == "edge" || token == "-") {
+                        continue;
+                    }
+                    
+                    int num;
+                    if (std::istringstream(token) >> num) {
+                        if (startEnd.empty() || startEnd.back().size() == 2) {
+                            startEnd.push_back(std::vector<int>());
+                        }
+                        startEnd.back().push_back(num);
+                    }
+                }
+            }
+        }
+    }
 }
 
