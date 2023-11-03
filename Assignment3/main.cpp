@@ -159,7 +159,12 @@ int main(){
             }else if(i.find("vertex") != std::string::npos){
                 vertexs++;
             }else if(i.find("edge") != std::string::npos){
-                
+                for(int k = 0; k < i.length(); k++){
+                    if(i[k] == '-'){
+                        StartList.push_back(int(i[k-2])-48);
+                        EndList.push_back(int(i[k+2])-48);
+                    }
+                }
             }
         }
     }
