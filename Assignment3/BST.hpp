@@ -2,6 +2,8 @@
 #include <iostream>
 using namespace std;
 
+int comparisons = 0;
+
 //This class will be the nodes that are made to make the Binary Search Tree
 //The data type for data is string since there will whole strings passed into it
 struct BST{
@@ -64,21 +66,38 @@ string BSTTreeInsert(BST*& root, string value){
 
 //passes the key we are looking for and the node (the start or root)
 BST* BSTSearch(BST*& node, string key){
+
     //if the node left and right is null then output (not there), if the data is the key also output (found)
     if(node->data == key){
-        cout << ":-" << node->data << " is done searching." << "\n";
-        return node;
-    //if the key does not exists in the search tree
-    }else if(node->left && node->right == nullptr){
-        cout << ":-" << key << " is not found" << "\n";
+        cout << ":-" << node->data << " is done searching. Comparisons = " << comparisons << "\n";
+        comparisons = 0;
         return node;
     //if the key is less then data then return the left side to go down next
     }else if(key < node->data){
+        comparisons++;
         cout << "L";
         return BSTSearch(node->left, key);
     //if the key is greater then data then return the right side to go down next
     }else{ // greater
+        comparisons++;
         cout << "R";
         return BSTSearch(node->right, key);
     }
+}
+
+void InOrderPrint(BST* node){
+    if(node != nullptr){
+        if(node->left != nullptr){
+            InOrderPrint(node->left);
+        }
+        cout << node->data << "\n";
+        if(node->right != nullptr){
+            InOrderPrint(node->right);
+        }
+
+    }else{
+        cout << "The Tree is Empty!" << "\n";
+    }
+
+
 }

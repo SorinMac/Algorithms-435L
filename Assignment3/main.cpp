@@ -111,6 +111,10 @@ int main(){
         BSTSearch(root, BSTitem[i]);
     }
 
+    cout << "\n";
+
+    InOrderPrint(root);
+
     //start of the graph
 
     //makes a new array to be written too for the stuff that will looked for in the BinaryTree
