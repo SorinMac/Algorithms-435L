@@ -145,35 +145,21 @@ int main(){
     int vertexs = 0;
     string start = "0";
     string end = "0";
-    vector<vector<int>> startEnd; 
+    vector<int> StartList;
+    vector<int> EndList;
 
     for(string i : GraphVector){
         if(i.find("--") == std::string::npos){
             if(i.find("new") != std::string::npos){
-                if(startEnd.empty() == false){
-                    MatrixGraph(vertexs, startEnd);
-                    startEnd.clear();
+                if(StartList.empty() == false){
+                    MatrixGraph(vertexs, StartList, EndList);
+                    StartList.clear();
+                    EndList.clear();
                 }
             }else if(i.find("vertex") != std::string::npos){
                 vertexs++;
             }else if(i.find("edge") != std::string::npos){
-
-                std::istringstream iss(i);
-
-                std::string token;
-                while (iss >> token) {
-                    if (token == "add" || token == "edge" || token == "-") {
-                        continue;
-                    }
-                    
-                    int num;
-                    if (std::istringstream(token) >> num) {
-                        if (startEnd.empty() || startEnd.back().size() == 2) {
-                            startEnd.push_back(std::vector<int>());
-                        }
-                        startEnd.back().push_back(num);
-                    }
-                }
+                
             }
         }
     }
