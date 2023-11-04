@@ -156,10 +156,13 @@ int main(){
         if(i.find("--") == std::string::npos){
             if(i.find("new") != std::string::npos){
                 if(StartList.empty() == false){
+
                     MatrixGraph(vertexs, StartList, EndList);
                     AdjacencyList(vertexs, StartList, EndList);
+                    LinkedObjs(vertexs, StartList, EndList);
                     StartList.clear();
                     EndList.clear();
+
                 }
             }else if(i.find("vertex") != std::string::npos){
                 vertexs++;
