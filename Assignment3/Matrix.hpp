@@ -5,7 +5,15 @@ using namespace std;
 
 void MatrixGraph(int vertexs, vector<int> start, vector<int> end) {
     int Matrix[vertexs][vertexs];
-    const int VECTOR_SIZE = start.size();
+    int VECTOR_SIZE = 0;
+
+    if(start.size() == end.size()){
+        VECTOR_SIZE = start.size();
+    }else if(start.size() > end.size()){
+        VECTOR_SIZE = start.size();
+    }else{
+        VECTOR_SIZE = end.size();
+    }
 
     for(int i = 0; i < vertexs; i++){
         for(int j = 0; j < vertexs; j++){
