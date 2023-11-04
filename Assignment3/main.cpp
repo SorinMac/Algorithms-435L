@@ -154,23 +154,45 @@ int main(){
 
     for(string i : GraphVector){
         if(i.find("--") == std::string::npos){
-            if(i.find("new") != std::string::npos){
-                if(StartList.empty() == false){
-
-                    MatrixGraph(vertexs, StartList, EndList);
-                    AdjacencyList(vertexs, StartList, EndList);
-                    LinkedObjs(vertexs, StartList, EndList);
-                    StartList.clear();
-                    EndList.clear();
-
-                }
+            if(i.find("new") != std::string::npos || i == GraphVector.back()){
+                MatrixGraph(vertexs, StartList, EndList);
+                AdjacencyList(vertexs, StartList, EndList);
+                //LinkedObjs(vertexs, StartList, EndList);
+                vertexs = 0;
+                StartList.clear();
+                EndList.clear();
             }else if(i.find("vertex") != std::string::npos){
                 vertexs++;
             }else if(i.find("edge") != std::string::npos){
-                for(int k = 0; k < i.length(); k++){
+
+                /*for(int k = 0; k < i.length(); k++){
                     if(i[k] == '-'){
+                        //this can not handle integers of larger than 1
                         StartList.push_back(int(i[k-2])-48);
                         EndList.push_back(int(i[k+2])-48);
+                    }
+                }*/
+
+                std::istringstream iss(i);
+                std::string token;
+
+                bool addToVectorA = true;
+
+                while (iss >> token) {
+                    if (token == "add" || token == "edge" || token == "-") {
+                        continue;
+                    }
+
+                    int num;
+                    if (std::istringstream(token) >> num) {
+                        if (addToVectorA) {
+                            StartList.push_back(num);
+                        } else {
+                            EndList.push_back(num);
+                        }
+
+                        // Toggle between vectors
+                        addToVectorA = !addToVectorA;
                     }
                 }
             }

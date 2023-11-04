@@ -16,9 +16,16 @@ void AdjacencyList(int vertexs, vector<int> start, vector<int> end){
     }
 
     for(int i = 0; i < VECTOR_SIZE; i++){
-        neighbors[start[i]-1].push_back(end[i]);
-        neighbors[end[i]-1].push_back(start[i]);
+        if(start[i] == 0){
+            neighbors[start[i]].push_back(end[i]);
+            neighbors[end[i]-1].push_back(start[i]);
+        }else if(end[i] == 0){
+            neighbors[start[i]-1].push_back(end[i]);
+            neighbors[end[i]].push_back(start[i]);
+        }else{
+            neighbors[start[i]-1].push_back(end[i]);
+            neighbors[end[i]-1].push_back(start[i]);
+        }
     }
-
 
 }

@@ -22,8 +22,17 @@ void MatrixGraph(int vertexs, vector<int> start, vector<int> end) {
     }
 
     for(int i = 0; i < VECTOR_SIZE; i++){
-        Matrix[start[i]-1][end[i]-1] = 1;
-        Matrix[end[i]-1][start[i]-1] = 1;
-    } 
+
+        if(start[i] == 0){
+            Matrix[start[i]][end[i]-1] = 1;
+            Matrix[end[i]-1][start[i]] = 1;
+        }else if(end[i] == 0){
+            Matrix[start[i]-1][end[i]] = 1;
+            Matrix[end[i]][start[i]-1] = 1;
+        }else{
+            Matrix[start[i]-1][end[i]-1] = 1;
+            Matrix[end[i]-1][start[i]-1] = 1;
+        }
+    }
 
 }
