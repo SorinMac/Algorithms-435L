@@ -157,7 +157,7 @@ int main(){
             if(i.find("new") != std::string::npos || i == GraphVector.back()){
                 MatrixGraph(vertexs, StartList, EndList);
                 AdjacencyList(vertexs, StartList, EndList);
-                //LinkedObjs(vertexs, StartList, EndList);
+                LinkedObjs(vertexs, StartList, EndList);
                 vertexs = 0;
                 StartList.clear();
                 EndList.clear();
