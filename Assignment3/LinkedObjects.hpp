@@ -45,9 +45,13 @@ void LinkedObjs(int vertexs, vector<int> start, vector<int> end) {
     
         cout << "Linked Objects: " << "\n";
         
-        for(int i = 0; i < vertexs; i++){
-            //cout << Vertecies[i].neightbors[i] << "\n";
-        }  
+        for (int i = 0; i < vertexs; i++) {
+            cout << "Neighbors of Node " << Vertecies[i].node << ": ";
+                for (int neighbor : Vertecies[i].neightbors) {
+                    cout << neighbor << " ";
+                }
+            cout << endl;
+        } 
     }
     
 }

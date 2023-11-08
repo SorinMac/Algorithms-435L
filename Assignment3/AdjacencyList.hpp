@@ -33,8 +33,13 @@ void AdjacencyList(int vertexs, vector<int> start, vector<int> end){
     
         cout << "Adjacency List: " << "\n";
 
-        for(int i = 0; i < VECTOR_SIZE; i++){
-            //cout <<  neighbors[i][i] << "\n";
+
+        for (int i = 0; i < vertexs; i++) {
+            cout << "Vertex " << i + 1 << ": ";
+            for (int j = 0; j < neighbors[i].size(); j++) {
+                cout << neighbors[i][j] << " ";
+            }
+            cout << endl;
         }
 
     }
