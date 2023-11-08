@@ -34,14 +34,19 @@ void MatrixGraph(int vertexs, vector<int> start, vector<int> end) {
             Matrix[end[i]-1][start[i]-1] = 1;
         }
     }
+    if(vertexs > 0){
+        cout << "\n";
 
-    for(int a = 0; a < vertexs; a++){
-        
-        for(int b = 0; b < vertexs; b++){
-            cout << Matrix[a][b] << " ";
-        }
+        cout << "Matrix: " << "\n";
 
-        cout << endl;
-    }  
+        for(int a = 0; a < vertexs; a++){
+
+            for(int b = 0; b < vertexs; b++){
+                cout << Matrix[a][b] << " ";
+            }
+
+            cout << endl;
+        } 
+    } 
 
 }

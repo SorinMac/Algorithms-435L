@@ -28,8 +28,15 @@ void AdjacencyList(int vertexs, vector<int> start, vector<int> end){
         }
     }
 
-    for(int i = 0; i < VECTOR_SIZE; i++){
-        cout <<  "test" << "\n";
+    if(vertexs > 0){
+        cout << "\n";
+    
+        cout << "Adjacency List: " << "\n";
+
+        for(int i = 0; i < VECTOR_SIZE; i++){
+            //cout <<  neighbors[i][i] << "\n";
+        }
+
     }
 
 }

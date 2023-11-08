@@ -39,9 +39,15 @@ void LinkedObjs(int vertexs, vector<int> start, vector<int> end) {
             Vertecies[end[i]-1].neightbors.push_back(start[i]);
         }
     }
+
+    if(vertexs > 0){
+        cout << "\n";
     
-    for(int i = 0; i < vertexs; i++){
-        cout << "test" << "\n";
+        cout << "Linked Objects: " << "\n";
+        
+        for(int i = 0; i < vertexs; i++){
+            //cout << Vertecies[i].neightbors[i] << "\n";
+        }  
     }
     
 }
