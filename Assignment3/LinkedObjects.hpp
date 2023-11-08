@@ -4,7 +4,7 @@
 using namespace std;
 
 struct LinkedObj{
-    int node;
+    string node;
     vector<int> neightbors;
     bool IsProcessed =  false;
 };
@@ -24,7 +24,7 @@ void LinkedObjs(int vertexs, vector<int> start, vector<int> end) {
     }
 
     for(int i = 0; i < vertexs; i++){
-        Vertecies[i].node = i+1;
+        Vertecies[i].node = to_string(i+1);
     }
 
     for(int i = 0; i < VECTOR_SIZE; i++){

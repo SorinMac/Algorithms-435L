@@ -7,4 +7,10 @@ void DeapthFirstSearch(LinkedObj vertex){
         cout << vertex.node << "\n";
         vertex.IsProcessed = true;
     }
+
+    for(int i = 0; i < vertex.neightbors.size(); i++){
+        if(vertex.IsProcessed == false){
+           //DeapthFirstSearch(//the vertex that you are on);
+        }
+    }
 }   
