@@ -40,9 +40,8 @@ void LinkedObjs(int vertexs, vector<int> start, vector<int> end) {
         }
     }
     
-
-
-
-
+    for(int i = 0; i < vertexs; i++){
+        cout << Vertecies[i].neightbors << "\n";
+    }
     
 }
