@@ -29,7 +29,7 @@ void AdjacencyList(int vertexs, vector<int> start, vector<int> end){
     }
 
     for(int i = 0; i < VECTOR_SIZE; i++){
-        cout <<  << "\n";
+        cout <<  "test" << "\n";
     }
 
 }

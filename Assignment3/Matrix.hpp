@@ -35,10 +35,13 @@ void MatrixGraph(int vertexs, vector<int> start, vector<int> end) {
         }
     }
 
-    for(int i = 0; i < vertexs; i++){
-        for(int k = 0; k < vertexs; k++){
-            cout << Matrix[i][k] << "\n";
+    for(int a = 0; a < vertexs; a++){
+        
+        for(int b = 0; b < vertexs; b++){
+            cout << Matrix[a][b] << " ";
         }
-    }
+
+        cout << endl;
+    }  
 
 }
