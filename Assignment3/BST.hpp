@@ -85,17 +85,27 @@ BST* BSTSearch(BST*& node, string key){
     }
 }
 
+//performs a in order print out of all the things in the BST
 void InOrderPrint(BST* node){
+
     if(node != nullptr){
+        //starts at the left of the root node
+
+        //goes left as long as the left is not null
         if(node->left != nullptr){
             InOrderPrint(node->left);
         }
+
+        //prints out
         cout << node->data << "\n";
+
+        //goes right as long as the right is not null
         if(node->right != nullptr){
             InOrderPrint(node->right);
         }
 
     }else{
+        //tells us if the tree is empty
         cout << "The Tree is Empty!" << "\n";
     }
 

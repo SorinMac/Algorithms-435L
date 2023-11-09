@@ -144,6 +144,7 @@ int main(){
     //error checking if the file is not opened
     else cout << "Unable to open file"; 
 
+    //values that will be used to check things
     int vertexs = 0;
     string start = "0";
     string end = "0";
@@ -151,17 +152,34 @@ int main(){
     vector<int> EndList;
     int Gcount = 0;
 
+    //will go throught the vector that contains all the lines in the graph1.txt file
     for(string i : GraphVector){
+        //check if it does not see the comment line
+        //if so start processing
         if(i.find("--") == std::string::npos){
+            
+            //if it sees new (for new graph) or the end of the vector then reset everything
             if(i.find("new") != std::string::npos || i == GraphVector.back()){
+
+                //print out as Matrix
                 MatrixGraph(vertexs, StartList, EndList);
+
+                //print out as Adjacency list
                 AdjacencyList(vertexs, StartList, EndList, Gcount);
+
+                //print out as linked objects
                 LinkedObjs(vertexs, StartList, EndList, Gcount);
+
+                //resets all data back to nothing to get the data of the next graph
                 vertexs = 0;
                 StartList.clear();
                 EndList.clear();
+
             }else if(i.find("vertex") != std::string::npos){
+
+                //if you find vertex in i that means a new vertex so add to the total amount
                 vertexs++;
+
             }else if(i.find("edge") != std::string::npos){
 
                 /*for(int k = 0; k < i.length(); k++){
@@ -172,17 +190,24 @@ int main(){
                     }
                 }*/
 
+                //if you find the edge then start pulling the start and end value for the edge to find out what two vertexes are connected to each other4
+
+                //this will be used with the tokens to read and extract tokens out of the string i
                 std::istringstream iss(i);
                 std::string token;
-
+                
+                //will be used to switch between vectors
                 bool addToVectorA = true;
 
+                //checks the tokens if they are equal will skip them
                 while (iss >> token) {
                     if (token == "add" || token == "edge" || token == "-") {
                         continue;
                     }
 
                     int num;
+
+                    //this will check if the token is a int and if so add it to the start list first then the second one to the end list
                     if (std::istringstream(token) >> num) {
                         if (addToVectorA) {
                             StartList.push_back(num);
@@ -193,6 +218,7 @@ int main(){
                         // Toggle between vectors
                         addToVectorA = !addToVectorA;
 
+                        //if the graph starts at zero this value will be used to tell the out functions to start at 0 instead of 1
                         if(num == 0){
                             Gcount = 5;
                         }
