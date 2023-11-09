@@ -1,6 +1,7 @@
 //librarys that are always used in c++
 #include <iostream>
 #include <vector>
+#include <string>
 using namespace std;
 
 struct LinkedObj{
@@ -9,9 +10,22 @@ struct LinkedObj{
     bool IsProcessed =  false;
 };
 
-void LinkedObjs(int vertexs, vector<int> start, vector<int> end) {
-    //make a array of size vertexes and then at each one make a LinkedObj for each one with id of the array spot+1;
+void DepthFirstSearch(LinkedObj Vertecies[], int id, int count){
+    if (Vertecies[id].IsProcessed == false) {
+        Vertecies[id].IsProcessed = true;
+        if(count == 5){
+             cout << "Visited node " << stoi(Vertecies[id].node) - 1 << endl;
+        }else{
+             cout << "Visited node " << stoi(Vertecies[id].node) << endl;
+        }
+        
+        for (int neighbor : Vertecies[id].neightbors) {
+            DepthFirstSearch(Vertecies, neighbor - 1, count);
+        }
+    }
+} 
 
+void LinkedObjs(int vertexs, vector<int> start, vector<int> end, int count) {
     LinkedObj Vertecies[vertexs];
     int VECTOR_SIZE = 0;
 
@@ -41,17 +55,48 @@ void LinkedObjs(int vertexs, vector<int> start, vector<int> end) {
     }
 
     if(vertexs > 0){
-        cout << "\n";
+        if(count == 5){
+            cout << "\n";
     
-        cout << "Linked Objects: " << "\n";
+            cout << "Linked Objects: " << "\n";
+            
+            for (int i = 0; i < vertexs; i++) {
+                cout << "Neighbors of Node " << stoi(Vertecies[i].node) - 1 << ": ";
+                    for (int neighbor : Vertecies[i].neightbors) {
+                        cout << neighbor << " ";
+                    }
+                cout << endl;
+            }
+
+            int id = 0;
+
+            cout << "\n";
+
+            cout << "Depth First Search: " << "\n";
+            
+            DepthFirstSearch(Vertecies, id, count); 
+        }else{
+            cout << "\n";
+    
+            cout << "Linked Objects: " << "\n";
+            
+            for (int i = 0; i < vertexs; i++) {
+                cout << "Neighbors of Node " << stoi(Vertecies[i].node) << ": ";
+                    for (int neighbor : Vertecies[i].neightbors) {
+                        cout << neighbor << " ";
+                    }
+                cout << endl;
+            }
+
+            int id = 0;
+
+            cout << "\n";
+
+            cout << "Depth First Search: " << "\n";
+            
+            DepthFirstSearch(Vertecies, id, count); 
+        }
         
-        for (int i = 0; i < vertexs; i++) {
-            cout << "Neighbors of Node " << Vertecies[i].node << ": ";
-                for (int neighbor : Vertecies[i].neightbors) {
-                    cout << neighbor << " ";
-                }
-            cout << endl;
-        } 
     }
     
 }

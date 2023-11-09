@@ -3,7 +3,7 @@
 #include <vector> 
 using namespace std;
 
-void AdjacencyList(int vertexs, vector<int> start, vector<int> end){
+void AdjacencyList(int vertexs, vector<int> start, vector<int> end, int count){
     vector <int> neighbors[vertexs];
     int VECTOR_SIZE = 0;
 
@@ -29,17 +29,34 @@ void AdjacencyList(int vertexs, vector<int> start, vector<int> end){
     }
 
     if(vertexs > 0){
-        cout << "\n";
+        if(count == 5){
+            cout << "\n";
     
-        cout << "Adjacency List: " << "\n";
+            cout << "Adjacency List: " << "\n";
 
 
-        for (int i = 0; i < vertexs; i++) {
-            cout << "Vertex " << i + 1 << ": ";
-            for (int j = 0; j < neighbors[i].size(); j++) {
-                cout << neighbors[i][j] << " ";
+            for (int i = 0; i < vertexs; i++) {
+                cout << "Vertex " << i << ": ";
+                for (int j = 0; j < neighbors[i].size(); j++) {
+                    cout << neighbors[i][j] << " ";
+                }
+                cout << endl;
             }
-            cout << endl;
+            
+        }else{
+            cout << "\n";
+    
+            cout << "Adjacency List: " << "\n";
+
+
+            for (int i = 0; i < vertexs; i++) {
+                cout << "Vertex " << i + 1 << ": ";
+                for (int j = 0; j < neighbors[i].size(); j++) {
+                    cout << neighbors[i][j] << " ";
+                }
+                cout << endl;
+            }
+
         }
 
     }

@@ -12,8 +12,6 @@
 #include "Matrix.hpp"
 #include "AdjacencyList.hpp"
 #include "LinkedObjects.hpp"
-#include "BFS.hpp"
-#include "DFS.hpp"
 
 using namespace std;
 
@@ -151,13 +149,14 @@ int main(){
     string end = "0";
     vector<int> StartList;
     vector<int> EndList;
+    int Gcount = 0;
 
     for(string i : GraphVector){
         if(i.find("--") == std::string::npos){
             if(i.find("new") != std::string::npos || i == GraphVector.back()){
                 MatrixGraph(vertexs, StartList, EndList);
-                AdjacencyList(vertexs, StartList, EndList);
-                LinkedObjs(vertexs, StartList, EndList);
+                AdjacencyList(vertexs, StartList, EndList, Gcount);
+                LinkedObjs(vertexs, StartList, EndList, Gcount);
                 vertexs = 0;
                 StartList.clear();
                 EndList.clear();
@@ -193,6 +192,10 @@ int main(){
 
                         // Toggle between vectors
                         addToVectorA = !addToVectorA;
+
+                        if(num == 0){
+                            Gcount = 5;
+                        }
                     }
                 }
             }
