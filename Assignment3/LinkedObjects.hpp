@@ -30,17 +30,21 @@ struct Queue{
     }
 
     void EnQueue(int info) {
+        //creates a temp Node pointer
         QueueNode* temp = new QueueNode;
-        temp->data = info;
-        temp->link = nullptr;
 
-        if (isEmptyQueue()) {
-            front = temp;
-            back = temp;
-        } else {
-            temp->link = back;
-            back = temp;
-        }
+        //sets the data to the temp nodes data
+        temp->data =  info;
+            //checks if back is null
+            if(back == NULL){
+                front = temp;
+                back = temp;
+                return;
+            }
+
+        //sets the back link to temp and then back to equal temp
+        back->link = temp;
+        back = temp;
     }
 
     /* Diagram: 
@@ -51,20 +55,28 @@ struct Queue{
 
     int DeQueue(){
         //checks if front is null or at the top
-        if (front == nullptr) {
+        if (front == NULL) {
             return 0;
         }
 
+        //creates a temp node pointer
         QueueNode* temp = front;
-        int data = temp->data;
 
+        //sets the front  variable to the link of front
         front = front->link;
+
+        //set data of char type to the temp->datas data
+        char data =  temp->data;
+
+        //delets temp since not needed anymore
         delete temp;
 
-        if (front == nullptr) {
-            back = nullptr;
+        //makes it all null
+        if(front == NULL){
+            back = NULL;
         }
 
+        //returns the data
         return data;
 
     }
