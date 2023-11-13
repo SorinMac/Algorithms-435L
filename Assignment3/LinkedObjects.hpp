@@ -30,21 +30,17 @@ struct Queue{
     }
 
     void EnQueue(int info) {
-        //creates a temp Node pointer
-        QueueNode* temp = new QueueNode;
-
-        //sets the data to the temp nodes data
-        temp->data =  info;
-            //checks if back is null
-            if(back == NULL){
-                front = temp;
-                back = temp;
-                return;
-            }
-
-        //sets the back link to temp and then back to equal temp
-        back->link = temp;
-        back = temp;
+        struct QueueNode * ptr;
+        ptr = (struct QueueNode * ) malloc(sizeof(struct QueueNode));
+        ptr->data = info;
+        ptr->link = NULL;
+        if ((front == NULL) && (back == NULL)) {
+            front = back = ptr;
+        } else {
+            back-> link = ptr;
+            back = ptr;
+        }
+        
     }
 
     /* Diagram: 
@@ -66,7 +62,7 @@ struct Queue{
         front = front->link;
 
         //set data of char type to the temp->datas data
-        char data =  temp->data;
+        int data =  temp->data;
 
         //delets temp since not needed anymore
         delete temp;
@@ -122,7 +118,6 @@ void DepthFirstSearch(LinkedObj Vertecies[], int id, int count){
 } 
 
 void BreathFirstSearch(LinkedObj Vertecies[], int id, int count){
-    int bc = 0;
 
     Queue BFSQueue;
 
@@ -136,7 +131,6 @@ void BreathFirstSearch(LinkedObj Vertecies[], int id, int count){
 
     while(BFSQueue.isEmptyQueue() == false){
         int current =  BFSQueue.DeQueue();
-        BFSQueue.front = nullptr;
 
         cout << "Visited Node: " << Vertecies[current].node << endl;
        
