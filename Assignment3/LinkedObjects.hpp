@@ -4,11 +4,88 @@
 #include <string>
 using namespace std;
 
+//now the enqueue is broken
+
+
 //new class for the LinkedObj
 struct LinkedObj{
     string node;
     vector<int> neightbors;
     bool IsProcessed =  false;
+};
+
+struct QueueNode{
+    int data;
+    QueueNode* link;
+};
+
+struct Queue{
+    //Node pointer for the front and back
+    QueueNode* front;
+    QueueNode* back;
+
+    Queue(){
+        front = nullptr;
+        back =  nullptr;
+    }
+
+    void EnQueue(int info) {
+        QueueNode* temp = new QueueNode;
+        temp->data = info;
+        temp->link = nullptr;
+
+        if (isEmptyQueue()) {
+            front = temp;
+            back = temp;
+        } else {
+            temp->link = back;
+            back = temp;
+        }
+    }
+
+    /* Diagram: 
+        head -> link
+        tail -> link (new iteam)
+        iteam -> link (becomes new tail) ...
+    */
+
+    int DeQueue(){
+        //checks if front is null or at the top
+        if (front == nullptr) {
+            return 0;
+        }
+
+        QueueNode* temp = front;
+        int data = temp->data;
+
+        front = front->link;
+        delete temp;
+
+        if (front == nullptr) {
+            back = nullptr;
+        }
+
+        return data;
+
+    }
+
+    //checks if the Queue is empty
+    bool isEmptyQueue() {
+        return front == nullptr;
+    }   
+
+    /* Diagram: 
+        head -> link
+        tail -> link (new iteam)
+        iteam -> link (becomes new tail) ...
+
+        same thing as above but in reverse
+
+        head -> link (takes out this item)
+        item -> link (this becomes new head)
+        tail -> link 
+
+    */
 };
 
 void DepthFirstSearch(LinkedObj Vertecies[], int id, int count){
@@ -31,6 +108,36 @@ void DepthFirstSearch(LinkedObj Vertecies[], int id, int count){
         }
     }
 } 
+
+void BreathFirstSearch(LinkedObj Vertecies[], int id, int count){
+    int bc = 0;
+
+    Queue BFSQueue;
+
+    BFSQueue.EnQueue(id);
+
+    Vertecies[id].IsProcessed = true;
+
+    cout << "\n";
+
+    cout << "Breath First Search: " << "\n";
+
+    while(BFSQueue.isEmptyQueue() == false){
+        int current =  BFSQueue.DeQueue();
+        BFSQueue.front = nullptr;
+
+        cout << "Visited Node: " << Vertecies[current].node << endl;
+       
+
+        for(int neighbor: Vertecies[current].neightbors){
+            if(!Vertecies[neighbor-1].IsProcessed){
+                Vertecies[neighbor-1].IsProcessed = true;
+                BFSQueue.EnQueue(neighbor-1);
+            }
+        }
+    }
+
+}
 
 void LinkedObjs(int vertexs, vector<int> start, vector<int> end, int count) {
 
@@ -96,7 +203,14 @@ void LinkedObjs(int vertexs, vector<int> start, vector<int> end, int count) {
             cout << "Depth First Search: " << "\n";
 
             //then goes to depth first search to do that print out as well
-            DepthFirstSearch(Vertecies, id, count); 
+            DepthFirstSearch(Vertecies, id, count);
+
+            for(int i = 0; i < vertexs; i++){
+                Vertecies[i].IsProcessed = false;
+            }
+
+            //then goes to breath first search to do that print out as well
+            BreathFirstSearch(Vertecies, id, count);
         }else{
             //print out if the vertex starts a 1
             cout << "\n";
@@ -123,7 +237,14 @@ void LinkedObjs(int vertexs, vector<int> start, vector<int> end, int count) {
             cout << "Depth First Search: " << "\n";
 
             //then goes to depth first search to do that print out as well
-            DepthFirstSearch(Vertecies, id, count); 
+            DepthFirstSearch(Vertecies, id, count);
+
+            for(int i = 0; i < vertexs; i++){
+                Vertecies[i].IsProcessed = false;
+            }
+
+            //then goes to breath first search to do that print out as well
+            BreathFirstSearch(Vertecies, id, count); 
         }
         
     }
