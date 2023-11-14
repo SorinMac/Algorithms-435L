@@ -23,18 +23,25 @@ struct Queue{
     QueueNode* back;
 
     Queue(){
+        //sets the front and back to null
         front = nullptr;
         back =  nullptr;
     }
 
     void EnQueue(int info) {
+        //creates a new point and make the data for it the id passed (called info)
+        //and the link null
         struct QueueNode * ptr;
+
         ptr = (struct QueueNode * ) malloc(sizeof(struct QueueNode));
+
         ptr->data = info;
         ptr->link = NULL;
+
+        //if the queue has nothing make the front the new thing and the back 
         if ((front == NULL) && (back == NULL)) {
             front = back = ptr;
-        } else {
+        } else { //else add the new data to the back
             back-> link = ptr;
             back = ptr;
         }
@@ -117,25 +124,37 @@ void DepthFirstSearch(LinkedObj Vertecies[], int id, int count){
 
 void BreathFirstSearch(LinkedObj Vertecies[], int id, int count){
 
+    //creates the queue
     Queue BFSQueue;
 
+    //enques the first thing of the id of the first thing
     BFSQueue.EnQueue(id);
 
+    //sets the processed value to true
     Vertecies[id].IsProcessed = true;
 
     cout << "\n";
 
     cout << "Breath First Search: " << "\n";
 
+    //while the queue is not empty do these actions
     while(BFSQueue.isEmptyQueue() == false){
+
+        //then dequeus the first item and prints it out
         int current =  BFSQueue.DeQueue();
 
-        cout << "Visited Node: " << Vertecies[current].node << endl;
+        if(count == 5){
+            cout << "Visited Node: " << stoi(Vertecies[current].node) - 1 << endl;
+        }else{
+            cout << "Visited Node: " << Vertecies[current].node << endl;
+        }
        
-
+        //for all the neighbors in the place
         for(int neighbor: Vertecies[current].neightbors){
             if(!Vertecies[neighbor-1].IsProcessed){
+                //if they are not processed then process them (set processed to true)
                 Vertecies[neighbor-1].IsProcessed = true;
+                //and enqueue it
                 BFSQueue.EnQueue(neighbor-1);
             }
         }
@@ -209,12 +228,26 @@ void LinkedObjs(int vertexs, vector<int> start, vector<int> end, int count) {
             //then goes to depth first search to do that print out as well
             DepthFirstSearch(Vertecies, id, count);
 
+            //resets values for the breath first search
             for(int i = 0; i < vertexs; i++){
                 Vertecies[i].IsProcessed = false;
             }
 
             //then goes to breath first search to do that print out as well
             BreathFirstSearch(Vertecies, id, count);
+
+            cout << "\n";
+
+            cout << "Not Connected Nodes: " << "\n";
+            
+            //will print out all no connected values
+            for(int i = 0; i < vertexs; i++){
+                //if not connected they where never processed so there value would be false
+                if(Vertecies[i].IsProcessed == false){
+                     cout << stoi(Vertecies[i].node)-1 << " is not connect :(" << "\n";
+                }
+            }
+
         }else{
             //print out if the vertex starts a 1
             cout << "\n";
@@ -248,7 +281,17 @@ void LinkedObjs(int vertexs, vector<int> start, vector<int> end, int count) {
             }
 
             //then goes to breath first search to do that print out as well
-            BreathFirstSearch(Vertecies, id, count); 
+            BreathFirstSearch(Vertecies, id, count);
+
+            cout << "\n";
+
+            cout << "Not Connected Nodes: " << "\n";
+
+            for(int i = 0; i < vertexs; i++){
+                if(Vertecies[i].IsProcessed == false){
+                     cout << stoi(Vertecies[i].node) << " is not connect :(" << "\n";
+                }
+            }
         }
         
     }
