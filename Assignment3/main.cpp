@@ -5,7 +5,6 @@
 #include <algorithm> /* These three are used for the removing of a space for the strings */
 #include <cctype> /* These three are used for the removing of a space for the strings */
 #include <iomanip> //used to set the amount of accuracy for the decmial points
-#include <string>
 #include <vector>
 #include <sstream>
 #include "BST.hpp"
@@ -181,14 +180,6 @@ int main(){
                 vertexs++;
 
             }else if(i.find("edge") != std::string::npos){
-
-                /*for(int k = 0; k < i.length(); k++){
-                    if(i[k] == '-'){
-                        //this can not handle integers of larger than 1
-                        StartList.push_back(int(i[k-2])-48);
-                        EndList.push_back(int(i[k+2])-48);
-                    }
-                }*/
 
                 //if you find the edge then start pulling the start and end value for the edge to find out what two vertexes are connected to each other4
 
