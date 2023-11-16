@@ -1,4 +1,5 @@
 myprogram:
-	g++ -std=c++23 main.cpp BST.hpp Matrix.hpp AdjacencyList.hpp LinkedObjects.hpp
+	g++ -std=c++20 main.cpp Search.hpp hash.hpp
+
 clean:
 	rm myprogram
