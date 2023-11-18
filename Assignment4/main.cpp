@@ -7,6 +7,7 @@
 #include <iomanip> //used to set the amount of accuracy for the decmial points
 #include <vector>
 #include <sstream>
+#include "FractionalGreedy.hpp"
 
 using namespace std;
 
@@ -85,6 +86,8 @@ int main(){
                     }
             
                 }
+
+                Spice(SpiceName, SpicePrice, SpiceQty);
 
             }else if(i.find("knapsack") != std::string::npos){
                 std::istringstream iss(i);
