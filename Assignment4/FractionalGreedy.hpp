@@ -26,7 +26,7 @@ void Spice(string SpiceName, float SpicePrice, int SpiceQTY){
     Spice->QTY = SpiceQTY;
 
     SpiceHolder.push_back(Spice);
-
+    
 }
 
 
