@@ -7,7 +7,6 @@
 #include <iomanip> //used to set the amount of accuracy for the decmial points
 #include <vector>
 #include <sstream>
-#include <bits/stdc++.h> 
 
 using namespace std;
 
@@ -34,7 +33,8 @@ void Spice(string SpiceName, float SpicePrice, int SpiceQTY){
 
 
 void FractionalGreedy(vector<int> knapsacks){
-    /*int sackSize = 0;
+    int sackSize = 0;
+    int condition = 1;
 
     for(int i : knapsacks){
         sackSize = i;
@@ -42,27 +42,32 @@ void FractionalGreedy(vector<int> knapsacks){
         for(spice* i : SpiceHolder){
 
             if(i->QTY > sackSize){
-
-                spice* GUnitPrice;
-
-                for(spice* j : SpiceHolder){
-
-                    if(j->unitPrice > GUnitPrice->unitPrice){
-
-                        GUnitPrice = j;
-
-                    }
-                }
-
-                if(GUnitPrice->QTY > sackSize){
-                    cout << "Knapsack of capacity " << std::to_string(sackSize) << " is worth " << std::to_string(GUnitPrice->unitPrice * sackSize) << " quatloos and contains " << std::to_string(sackSize) << " scoop of " << GUnitPrice->name << "." << "\n";
-                }
-
-
-                
+                condition = 1;
             }
         }
-    }*/
+
+        if(condition == 1){
+
+            spice* GUnitPrice;
+
+            for(spice* j : SpiceHolder){
+
+                if(j->unitPrice > GUnitPrice->unitPrice){
+
+                    GUnitPrice = j;
+
+                }
+            }
+
+            if(GUnitPrice->QTY > sackSize){
+                cout << "Knapsack of capacity " << std::to_string(sackSize) << " is worth " << std::to_string(GUnitPrice->unitPrice * sackSize) << " quatloos and contains " << std::to_string(sackSize) << " scoop of " << GUnitPrice->name << "." << "\n";
+            }
+        }else{
+            
+        }
+
+
+    }
 
 }
 

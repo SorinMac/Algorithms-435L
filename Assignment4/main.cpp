@@ -109,7 +109,7 @@ int main(){
         }
     }
 
-    //FractionalGreedy(kanpsacks);
+    FractionalGreedy(kanpsacks);
 
 
 
