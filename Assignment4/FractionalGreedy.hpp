@@ -7,6 +7,7 @@
 #include <iomanip> //used to set the amount of accuracy for the decmial points
 #include <vector>
 #include <sstream>
+#include <bits/stdc++.h> 
 
 using namespace std;
 
@@ -14,6 +15,7 @@ struct spice{
     string name;
     float price;
     int QTY;
+    float unitPrice;
 };
 
 vector<spice*> SpiceHolder;
@@ -24,13 +26,43 @@ void Spice(string SpiceName, float SpicePrice, int SpiceQTY){
     Spice->name = SpiceName;
     Spice->price = SpicePrice;
     Spice->QTY = SpiceQTY;
+    Spice->unitPrice = SpicePrice/SpiceQTY;
 
     SpiceHolder.push_back(Spice);
     
 }
 
 
-void FractionalGreedy(){
+void FractionalGreedy(vector<int> knapsacks){
+    /*int sackSize = 0;
+
+    for(int i : knapsacks){
+        sackSize = i;
+
+        for(spice* i : SpiceHolder){
+
+            if(i->QTY > sackSize){
+
+                spice* GUnitPrice;
+
+                for(spice* j : SpiceHolder){
+
+                    if(j->unitPrice > GUnitPrice->unitPrice){
+
+                        GUnitPrice = j;
+
+                    }
+                }
+
+                if(GUnitPrice->QTY > sackSize){
+                    cout << "Knapsack of capacity " << std::to_string(sackSize) << " is worth " << std::to_string(GUnitPrice->unitPrice * sackSize) << " quatloos and contains " << std::to_string(sackSize) << " scoop of " << GUnitPrice->name << "." << "\n";
+                }
+
+
+                
+            }
+        }
+    }*/
 
 }
 
