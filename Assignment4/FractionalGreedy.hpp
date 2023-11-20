@@ -32,42 +32,40 @@ void Spice(string SpiceName, float SpicePrice, int SpiceQTY){
 }
 
 
-void FractionalGreedy(vector<int> knapsacks){
-    int sackSize = 0;
-    int condition = 1;
+void FractionalGreedy(int size){
+    int NapSize = 0;
+    int condition = 0;
+    float total = 0;
+    spice* GUnitPrice;
+    GUnitPrice->unitPrice = 0;
 
-    for(int i : knapsacks){
-        sackSize = i;
+    NapSize = size;
 
-        for(spice* i : SpiceHolder){
+    for(spice* j : SpiceHolder){
 
-            if(i->QTY > sackSize){
-                condition = 1;
-            }
+        if(j->unitPrice > GUnitPrice->unitPrice){
+
+            GUnitPrice = j;
+
         }
-
-        if(condition == 1){
-
-            spice* GUnitPrice;
-
-            for(spice* j : SpiceHolder){
-
-                if(j->unitPrice > GUnitPrice->unitPrice){
-
-                    GUnitPrice = j;
-
-                }
-            }
-
-            if(GUnitPrice->QTY > sackSize){
-                cout << "Knapsack of capacity " << std::to_string(sackSize) << " is worth " << std::to_string(GUnitPrice->unitPrice * sackSize) << " quatloos and contains " << std::to_string(sackSize) << " scoop of " << GUnitPrice->name << "." << "\n";
-            }
-        }else{
-            
-        }
-
-
     }
 
+    //not getting to the right function to do the work look at geeks for geeks for that answer
+    
+    if(GUnitPrice->QTY < NapSize){
+
+        //will handle whole amounts
+
+        NapSize = NapSize - GUnitPrice->QTY;
+        total = GUnitPrice->price;
+
+    }else if(GUnitPrice->QTY > NapSize){
+
+        //will handle fractional amounts
+
+        cout << "Knapsack of capacity " << std::to_string(NapSize) << " is worth " << std::to_string(GUnitPrice->unitPrice * NapSize) << " quatloos and contains " << std::to_string(NapSize) << " scoop of " << GUnitPrice->name << "." << "\n";
+        
+    }
 }
+
 

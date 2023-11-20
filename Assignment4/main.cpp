@@ -45,12 +45,14 @@ int main(){
     //error checking if the file is not opened
     else cout << "Unable to open file"; 
 
+    //variables that will be used for processing
     string SpiceName;
     float SpicePrice;
     int SpiceQty;
     int count = 0;
     int knapsackSize;
     
+    //will hold the knapsacks value
     vector<int> kanpsacks;
 
     for(string i: SpiceHeist){
@@ -109,7 +111,9 @@ int main(){
         }
     }
 
-    FractionalGreedy(kanpsacks);
+    for(int i : kanpsacks){
+        FractionalGreedy(i);
+    }
 
 
 
