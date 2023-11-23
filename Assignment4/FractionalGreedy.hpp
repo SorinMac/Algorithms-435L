@@ -44,9 +44,6 @@ void Spice(string SpiceName, float SpicePrice, int SpiceQTY){
     
 }
 
-//Math ✅
-//Print out ❎
-
 
 void FractionalGreedy(int size){
     //is given the size of the knap sack
@@ -55,6 +52,9 @@ void FractionalGreedy(int size){
     const int trueSize =  size;
     //to keep hold of the total
     float total = 0;
+
+    vector<string> SpiceName;
+    vector<int> SpiceAmount;
 
     //will go until the Knap Sack is 0 in size
     while(NapSize > 0){
@@ -86,18 +86,38 @@ void FractionalGreedy(int size){
             NapSize = NapSize - GUnitPrice->QTY;
             total = total + GUnitPrice->price;
 
+            //will add the amounts to a vector so that we have access to all the spices that made up the greatest combination (whole amounts)
+            SpiceName.push_back(GUnitPrice->name);
+            SpiceAmount.push_back(GUnitPrice->QTY);
 
-        }else if(GUnitPrice->QTY > NapSize){
+
+        }else if(GUnitPrice->QTY > NapSize || NapSize == 0){
 
             //will handle fractional amounts
 
             total = total + GUnitPrice->unitPrice * NapSize;
-            //cout << "Knapsack of capacity " << std::to_string(trueSize) << " is worth " << std::to_string(total) << " quatloos and contains " << std::to_string(NapSize) << " scoop of " << GUnitPrice->name << "." << "\n";
+
+            //will add the amounts to a vector so that we have access to all the spices that made up the greatest combination (fractional amounts)
+            SpiceName.push_back(GUnitPrice->name);
+            SpiceAmount.push_back(GUnitPrice->QTY - NapSize);
+
             break;
             
         }
 
     }
+
+
+    //will handle the out put onto terminal
+    cout << "Knapsack of capacity " << std::to_string(trueSize) << " is worth " << std::to_string(total) << " quatloos and contains ";
+    
+    //goes through the vecotrs that hold the data and prints out everything in it
+    for(int i = 0; i < SpiceName.size(); i++){
+        cout << SpiceAmount[i] << " scoops of " << SpiceName[i] << ". ";
+    }
+
+    //creates a new line for the next input
+    cout << "\n";
 
     //resets all the spice values Prcosessed values to false so that it can be done again with a different knap sack
     for(spice* i : SpiceHolder){
