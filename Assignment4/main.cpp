@@ -8,6 +8,7 @@
 #include <vector>
 #include <sstream>
 #include "FractionalGreedy.hpp"
+#include "DirectedWeightedGraph.hpp"
 
 using namespace std;
 
@@ -141,6 +142,95 @@ int main(){
         FractionalGreedy(i);
     }
 
+    cout << "\n";
+
+    vector<string> Graph;
+
+    //start of the file stream studd
+    string readInString2;
+
+    //opens the right file
+    ifstream File2 ("graphs2.txt");
+
+    //checks if the file is open
+    if (File2.is_open()){
+
+        //while file is open gets the line
+        while (File2.good()){
+
+            getline(File2, readInString2);
+
+            //add the now properly formatted line to the array
+            Graph.push_back(readInString2);
+
+            
+        }
+        //closed the file at the end when all done
+        File2.close();
+    }
+
+    //error checking if the file is not opened
+    else cout << "Unable to open file"; 
+
+    int Start = 0;
+    int End = 0;
+    int weight = 0;
+    int VertexName = 0;
+    int GraphCount = 0;
+
+    for(string i: Graph){
+
+        if(i.find("--") == std::string::npos){
+            if(i.find("new") != std::string::npos || i == Graph.back()){
+
+                PrintAllData();
+                DeleteVertex();
+                Start = End = weight = VertexName = 0;
+
+            }else if(i.find("vertex") != std::string::npos){
+
+                std::istringstream iss(i);
+                std::string token;
+
+                while (iss >> token) {
+                    if (token == "add" || token == "vertex") {
+                        continue;
+                    }
+
+                    VertexName = stoi(token);
+
+                }
+
+                Vertex(VertexName);
+                 
+            }else if(i.find("edge") != std::string::npos){
+
+                std::istringstream iss(i);
+                std::string token;
+
+                while (iss >> token) {
+                    if (token == "add" || token == "edge" || token == "-") {
+                        continue;
+                    }
+
+                   if(GraphCount == 0){
+                        Start = stoi(token);
+                        GraphCount++;
+                   }else if (GraphCount == 1){
+                        End = stoi(token);
+                        GraphCount++;
+                   }else{
+                        weight = stoi(token);
+                        GraphCount = 0;
+                   }
+
+                }
+
+                AddEdge(Start, End, weight);
+
+            }
+        }
+    }
 
 
     
