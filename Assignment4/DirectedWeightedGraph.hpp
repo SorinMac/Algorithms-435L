@@ -67,4 +67,14 @@ void PrintAllData(){
 //to here was taken from someone else
 //wont have it in final submission only here for testing (making sure all is good for the data)
 
+void IniatSS(){//graph, source
 
+}
+
+void Relax(){//comeing from, going too, source
+
+}
+
+void BellmanFord(){//graph, weight, source
+
+}
