@@ -14,7 +14,8 @@ struct Graph{
     int Vertex;
     vector<int> neighbors;
     vector<int> weights;
-    bool IsProcessed = false;
+    int Distance = 0;
+    vector<int> BackToTheFuture;
 };
 
 vector<Graph*> VertexHolder;
@@ -54,9 +55,6 @@ void printGraphData(const Graph* graph) {
         std::cout << weight << " ";
     }
     std::cout << std::endl;
-
-    std::cout << "IsProcessed: " << (graph->IsProcessed ? "true" : "false") << std::endl;
-    std::cout << "----------------------" << std::endl;
 }
 
 void PrintAllData(){
@@ -69,12 +67,42 @@ void PrintAllData(){
 
 void IniatSS(){//graph, source
 
+    VertexHolder[0]->Distance = 0;
+    VertexHolder[0]->BackToTheFuture.clear();
+
+    for(int i = 1; i < VertexHolder.size(); i++){
+        VertexHolder[i]->Distance = 1000000;
+        VertexHolder[i]->BackToTheFuture.clear();
+    }
+
 }
 
-void Relax(){//comeing from, going too, source
+void Relax(int start, int end, int weight){//comeing from, going too, weight
+
+    if(VertexHolder[end-1]->Distance > (weight + VertexHolder[start-1]->Distance)){
+        VertexHolder[end-1]->Distance =  weight + VertexHolder[start-1]->Distance;
+        VertexHolder[end-1]->BackToTheFuture.push_back(start);
+    }
 
 }
 
-void BellmanFord(){//graph, weight, source
+bool BellmanFord(){//graph, weight, source
+
+    IniatSS();
+
+    for(int i = 0; i < VertexHolder.size()-1 ; i++){
+        for(int e = 0; e < VertexHolder[i]->neighbors.size(); e++){
+            Relax(VertexHolder[i]->Vertex, VertexHolder[i]->neighbors[e], VertexHolder[i]->weights[e]);
+        }
+    }
+
+    for(int c = 0; c < VertexHolder.size()-1 ; c++){
+        for(int g = 0; g < VertexHolder[c]->neighbors.size(); g++){
+            if((VertexHolder[VertexHolder[c]->neighbors[g]-1]->Distance > (VertexHolder[c]->weights[g] + VertexHolder[c]->Distance))){
+                return false;
+            }
+        }
+    }
+    return true;
 
 }

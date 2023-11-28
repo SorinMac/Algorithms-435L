@@ -177,14 +177,25 @@ int main(){
     int weight = 0;
     int VertexName = 0;
     int GraphCount = 0;
+    bool BFGTest = false;
 
     for(string i: Graph){
 
         if(i.find("--") == std::string::npos){
             if(i.find("new") != std::string::npos || i == Graph.back()){
 
-                PrintAllData();
+                //PrintAllData();
+
+                BellmanFord();
+
+                if(BFGTest == false){
+                    cout << "There was a error in the shortest path calcualtion" << "\n";
+                }else{ //BFGTest == true
+                    cout << "No error in calculating the shortest path" << "\n";
+                }
+
                 DeleteVertex();
+                
                 Start = End = weight = VertexName = 0;
 
             }else if(i.find("vertex") != std::string::npos){
