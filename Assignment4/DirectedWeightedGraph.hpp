@@ -71,7 +71,7 @@ void IniatSS(){//graph, source
     VertexHolder[0]->BackToTheFuture.clear();
 
     for(int i = 1; i < VertexHolder.size(); i++){
-        VertexHolder[i]->Distance = 1000000;
+        VertexHolder[i]->Distance = 8675309;
         VertexHolder[i]->BackToTheFuture.clear();
     }
 
