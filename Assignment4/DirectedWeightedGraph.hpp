@@ -82,6 +82,8 @@ void Relax(int start, int end, int weight){//comeing from, going too, weight
     if(VertexHolder[end-1]->Distance > (weight + VertexHolder[start-1]->Distance)){
         VertexHolder[end-1]->Distance =  weight + VertexHolder[start-1]->Distance;
         VertexHolder[end-1]->BackToTheFuture.push_back(start);
+
+        cout << start << "\n";
     }
 
 }
@@ -90,8 +92,11 @@ bool BellmanFord(){//graph, weight, source
 
     IniatSS();
 
-    for(int i = 0; i < VertexHolder.size()-1 ; i++){
+    for(int i = 1; i < VertexHolder.size()-1 ; i++){
         for(int e = 0; e < VertexHolder[i]->neighbors.size(); e++){
+            int a = VertexHolder[i]->Vertex;
+            int b = VertexHolder[i]->neighbors[e];
+            int c = VertexHolder[i]->weights[e];
             Relax(VertexHolder[i]->Vertex, VertexHolder[i]->neighbors[e], VertexHolder[i]->weights[e]);
         }
     }

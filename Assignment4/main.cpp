@@ -187,9 +187,9 @@ int main(){
 
                 //PrintAllData();
                 if(tell == 0){
-                    tell == 1;
+                    tell = 1;
                 }else{
-                    BellmanFord();
+                    BFGTest = BellmanFord();
 
                     if(BFGTest == false){
                         cout << "There was a error in the shortest path calcualtion" << "\n";
