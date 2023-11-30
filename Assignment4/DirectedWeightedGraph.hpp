@@ -66,7 +66,7 @@ void PrintAllData(){
 //wont have it in final submission only here for testing (making sure all is good for the data)
 
 void IniatSS(){//graph, source
-
+    
     VertexHolder[0]->Distance = 0;
     VertexHolder[0]->BackToTheFuture.clear();
 

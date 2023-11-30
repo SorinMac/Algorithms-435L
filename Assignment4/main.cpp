@@ -178,6 +178,7 @@ int main(){
     int VertexName = 0;
     int GraphCount = 0;
     bool BFGTest = false;
+    int tell = 0;
 
     for(string i: Graph){
 
@@ -185,18 +186,21 @@ int main(){
             if(i.find("new") != std::string::npos || i == Graph.back()){
 
                 //PrintAllData();
+                if(tell == 0){
+                    tell == 1;
+                }else{
+                    BellmanFord();
 
-                BellmanFord();
+                    if(BFGTest == false){
+                        cout << "There was a error in the shortest path calcualtion" << "\n";
+                    }else{ //BFGTest == true
+                        cout << "No error in calculating the shortest path" << "\n";
+                    }
 
-                if(BFGTest == false){
-                    cout << "There was a error in the shortest path calcualtion" << "\n";
-                }else{ //BFGTest == true
-                    cout << "No error in calculating the shortest path" << "\n";
+                    DeleteVertex();
+                    
+                    Start = End = weight = VertexName = 0;
                 }
-
-                DeleteVertex();
-                
-                Start = End = weight = VertexName = 0;
 
             }else if(i.find("vertex") != std::string::npos){
 
