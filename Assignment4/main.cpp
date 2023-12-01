@@ -192,19 +192,26 @@ int main(){
                 if(tell == 0){
                     tell = 1;
                 }else{
-                    BFGTest = BellmanFord();
 
-                    if(BFGTest == false){
-                        cout << "\n";
-                        cout << "There was a error in the shortest path calcualtion" << "\n";
-                    }else{ //BFGTest == true
-                        cout << "\n";
-                        cout << "No error in calculating the shortest path" << "\n";
+                    if(VertexName > 0){
+                        //PrintAllData();
+
+                        BFGTest = BellmanFord();
+
+                        if(BFGTest == false){
+                            cout << "\n";
+                            cout << "There was a error in the shortest path calcualtion" << "\n";
+                        }else{ //BFGTest == true
+                            cout << "\n";
+                            cout << "No error in calculating the shortest path" << "\n";
+                        }
+
+                        DeleteVertex();
+                        
+                        Start = End = weight = VertexName = 0;
+                    }else{
+                        continue;
                     }
-
-                    DeleteVertex();
-                    
-                    Start = End = weight = VertexName = 0;
                 }
 
             }else if(i.find("vertex") != std::string::npos){

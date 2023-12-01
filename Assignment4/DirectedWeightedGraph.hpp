@@ -14,7 +14,7 @@
 
 things to do:
 
-0 graph loops till infinite
+0 graph loops till infinite (reads the other new graph and try to read graph on null) (might be fixed)
 check other graphs
 
 */
