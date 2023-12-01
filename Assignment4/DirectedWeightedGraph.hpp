@@ -8,13 +8,24 @@
 #include <vector>
 #include <sstream>
 
+//hardest thing was wrapping my head around what the relax function is compariring to make the graph RELAX
+
+/*
+
+things to do:
+
+0 graph loops till infinite
+check other graphs
+
+*/
+
 using namespace std;
 
 struct Graph{
     int Vertex;
     vector<int> neighbors;
     vector<int> weights;
-    int Distance = 0;
+    int Distance = 8675309;
     vector<int> BackToTheFuture;
 };
 
@@ -68,22 +79,15 @@ void PrintAllData(){
 void IniatSS(){//graph, source
     
     VertexHolder[0]->Distance = 0;
-    VertexHolder[0]->BackToTheFuture.clear();
-
-    for(int i = 1; i < VertexHolder.size(); i++){
-        VertexHolder[i]->Distance = 8675309;
-        VertexHolder[i]->BackToTheFuture.clear();
-    }
 
 }
 
 void Relax(int start, int end, int weight){//comeing from, going too, weight
 
-    if(VertexHolder[end-1]->Distance > (weight + VertexHolder[start-1]->Distance)){
-        VertexHolder[end-1]->Distance =  weight + VertexHolder[start-1]->Distance;
-        VertexHolder[end-1]->BackToTheFuture.push_back(start);
-
-        cout << start << "\n";
+    if(VertexHolder[start-1]->Distance != 8675309 && (VertexHolder[start-1]->Distance + weight) < VertexHolder[end-1]->Distance){
+        VertexHolder[end-1]->Distance =  VertexHolder[start-1]->Distance + weight;
+        VertexHolder[end-1]->BackToTheFuture = VertexHolder[start-1]->BackToTheFuture;
+        VertexHolder[end-1]->BackToTheFuture.push_back(VertexHolder[end-1]->Vertex);
     }
 
 }
@@ -92,22 +96,42 @@ bool BellmanFord(){//graph, weight, source
 
     IniatSS();
 
-    for(int i = 1; i < VertexHolder.size()-1 ; i++){
-        for(int e = 0; e < VertexHolder[i]->neighbors.size(); e++){
-            int a = VertexHolder[i]->Vertex;
-            int b = VertexHolder[i]->neighbors[e];
-            int c = VertexHolder[i]->weights[e];
-            Relax(VertexHolder[i]->Vertex, VertexHolder[i]->neighbors[e], VertexHolder[i]->weights[e]);
+    for(int s = 0; s < VertexHolder.size()-1 ; s++){
+        for(int o = 0; o < VertexHolder.size(); o++){
+            for(int r = 0; r < VertexHolder[o]->neighbors.size(); r++){
+                int neighbor = VertexHolder[o]->neighbors[r];
+                int weight = VertexHolder[o]->weights[r];
+                Relax(VertexHolder[o]->Vertex, neighbor, weight);
+
+            }
         }
     }
 
-    for(int c = 0; c < VertexHolder.size()-1 ; c++){
-        for(int g = 0; g < VertexHolder[c]->neighbors.size(); g++){
-            if((VertexHolder[VertexHolder[c]->neighbors[g]-1]->Distance > (VertexHolder[c]->weights[g] + VertexHolder[c]->Distance))){
+    for(int i = 0; i < VertexHolder.size()-1 ; i++){
+        for(int n = 0; n < VertexHolder[i]->neighbors.size(); n++){
+            int neighbor = VertexHolder[i]->neighbors[n];
+            int weight = VertexHolder[i]->weights[n];
+            if(VertexHolder[i]->Distance != 8675309 && (VertexHolder[i]->Distance + weight) < VertexHolder[neighbor-1]->Distance){
                 return false;
             }
         }
     }
+
+    // Print the path
+    for(int t = 1; t < VertexHolder.size(); t++){
+        cout << "The path from " << VertexHolder[0]->Vertex << " --> " << VertexHolder[t]->Vertex << " is " << VertexHolder[0]->Vertex << " --> ";
+        for(int o = 0; o < VertexHolder[t]->BackToTheFuture.size(); o++){
+            if(o == VertexHolder[t]->BackToTheFuture.size()-1){
+                cout << VertexHolder[t]->BackToTheFuture[o] << "\n";
+            }else if(o < VertexHolder[t]->BackToTheFuture.size()){
+                 cout << VertexHolder[t]->BackToTheFuture[o] << " --> ";
+            }
+        }
+    }
+    
+
     return true;
+
+    
 
 }

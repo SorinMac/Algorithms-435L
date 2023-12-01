@@ -12,6 +12,9 @@
 
 using namespace std;
 
+//biggest issue was getting the relax function to do the proper comparison
+//how i have it set up causes a lot of confusion on what to add the weight to and what to compare the distance to
+
 
 //main functions
 int main(){
@@ -192,8 +195,10 @@ int main(){
                     BFGTest = BellmanFord();
 
                     if(BFGTest == false){
+                        cout << "\n";
                         cout << "There was a error in the shortest path calcualtion" << "\n";
                     }else{ //BFGTest == true
+                        cout << "\n";
                         cout << "No error in calculating the shortest path" << "\n";
                     }
 
