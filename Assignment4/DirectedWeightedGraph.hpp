@@ -118,6 +118,7 @@ bool BellmanFord(){//graph, weight, source
     }
 
     // Print the path
+    cout << "\n";
     for(int t = 1; t < VertexHolder.size(); t++){
         cout << "The path from " << VertexHolder[0]->Vertex << " --> " << VertexHolder[t]->Vertex << " is " << VertexHolder[0]->Vertex << " --> ";
         for(int o = 0; o < VertexHolder[t]->BackToTheFuture.size(); o++){
