@@ -109,7 +109,7 @@ void FractionalGreedy(int size){
 
 
     //will handle the out put onto terminal
-    cout << "Knapsack of capacity " << std::to_string(trueSize) << " is worth " << std::to_string(total) << " quatloos and contains ";
+    cout << "Knapsack of capacity " << std::to_string(trueSize) << " is worth " << setprecision(3) << total << " quatloos and contains ";
     
     //goes through the vecotrs that hold the data and prints out everything in it
     for(int i = 0; i < SpiceName.size(); i++){

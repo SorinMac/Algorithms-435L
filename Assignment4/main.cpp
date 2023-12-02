@@ -188,14 +188,12 @@ int main(){
         if(i.find("--") == std::string::npos){
             if(i.find("new") != std::string::npos || i == Graph.back()){
 
-                //PrintAllData();
                 if(tell == 0){
                     tell = 1;
                 }else{
 
                     if(VertexName > 0){
-                        //PrintAllData();
-
+                    
                         BFGTest = BellmanFord();
 
                         if(BFGTest == false){
