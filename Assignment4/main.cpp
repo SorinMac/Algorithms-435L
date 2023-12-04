@@ -175,6 +175,7 @@ int main(){
     //error checking if the file is not opened
     else cout << "Unable to open file"; 
 
+    //values to to hold data and other output
     int Start = 0;
     int End = 0;
     int weight = 0;
@@ -183,15 +184,18 @@ int main(){
     bool BFGTest = false;
     int tell = 0;
 
+    //goes through the whole graph vector
     for(string i: Graph){
 
+        //checks for comments
         if(i.find("--") == std::string::npos){
+            //checks for new graph
             if(i.find("new") != std::string::npos || i == Graph.back()){
-
-                if(tell == 0){
+                //will then go in to doing the work (calling the Bellman ford algo with data stored in the file
+                if(tell == 0){ //not on first instance of new (cause nothing is there)
                     tell = 1;
                 }else{
-
+                    //and only if there is stuff in the vertex
                     if(VertexName > 0){
                     
                         BFGTest = BellmanFord();
@@ -204,6 +208,7 @@ int main(){
                             cout << "No error in calculating the shortest path" << "\n";
                         }
 
+                        //will also reset everything
                         DeleteVertex();
                         
                         Start = End = weight = VertexName = 0;
@@ -212,11 +217,13 @@ int main(){
                     }
                 }
 
+            //then checks for vertex to see if we are adding a new vertex
             }else if(i.find("vertex") != std::string::npos){
 
                 std::istringstream iss(i);
                 std::string token;
 
+                //splits to find the vertex (seperation via space)
                 while (iss >> token) {
                     if (token == "add" || token == "vertex") {
                         continue;
@@ -227,30 +234,34 @@ int main(){
                 }
 
                 Vertex(VertexName);
-                 
+
+            //see if a edge is being added
             }else if(i.find("edge") != std::string::npos){
 
                 std::istringstream iss(i);
                 std::string token;
 
+                //splits on spaces so the edge will look like this 2 3 4 
                 while (iss >> token) {
                     if (token == "add" || token == "edge" || token == "-") {
                         continue;
                     }
 
-                   if(GraphCount == 0){
+                    //count is used to tell what is the first and second vertex and the weight of that path
+                   if(GraphCount == 0){ //first
                         Start = stoi(token);
                         GraphCount++;
-                   }else if (GraphCount == 1){
+                   }else if (GraphCount == 1){ //second
                         End = stoi(token);
                         GraphCount++;
-                   }else{
+                   }else{//weight
                         weight = stoi(token);
                         GraphCount = 0;
                    }
 
                 }
 
+                //then adds it
                 AddEdge(Start, End, weight);
 
             }
