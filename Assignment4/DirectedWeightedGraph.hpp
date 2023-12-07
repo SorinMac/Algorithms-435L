@@ -103,9 +103,9 @@ bool BellmanFord(){//graph, weight, source
         for(int n = 0; n < VertexHolder[i]->neighbors.size(); n++){
             //find the neighbors again
             int neighbor = VertexHolder[i]->neighbors[n];
-            //finds the weight again (for al edges)
+            //finds the weight again (for all edges)
             int weight = VertexHolder[i]->weights[n];
-            //checks for negative weights for the algorithm
+            //checks for negative weight cycles for the algorithm
             if(VertexHolder[i]->Distance != 8675309 && (VertexHolder[i]->Distance + weight) < VertexHolder[neighbor-1]->Distance){
                 //will return false if found
                 return false;
