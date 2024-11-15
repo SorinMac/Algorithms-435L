@@ -110,7 +110,7 @@ void DepthFirstSearch(LinkedObj Vertecies[], int id, int count){
 
         //print out if first vertex is 0
         if(count == 5){
-             cout << "Visited node " << stoi(Vertecies[id].node) - 1 << endl;
+            cout << "Visited node " << stoi(Vertecies[id].node) - 1 << endl;
         }else{ //if first vertex is 1
              cout << "Visited node " << stoi(Vertecies[id].node) << endl;
         }
